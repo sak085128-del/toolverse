@@ -46,457 +46,533 @@
       "slug": "image-compressor",
       "title": "Image Compressor",
       "category": "image",
-      "desc": "Compress JPG, PNG and WebP images in your browser with adjustable quality. Nothing is uploaded."
+      "desc": "Compress JPG, PNG and WebP images in your browser with adjustable quality. Nothing is uploaded.",
+      "intro": "Perfect for saving storage or speeding up web pages - you can compare the compressed result against the original before downloading."
     },
     {
       "slug": "image-converter",
       "title": "Image Converter",
       "category": "image",
-      "desc": "Convert images between PNG, JPG, WEBP, BMP and GIF with no uploads and no size limits."
+      "desc": "Convert images between PNG, JPG, WEBP, BMP and GIF with no uploads and no size limits.",
+      "intro": "Batch-friendly and instant: pick your target format, tweak quality where available, then export directly from the browser."
     },
     {
       "slug": "image-resizer",
       "title": "Image Resizer",
       "category": "image",
-      "desc": "Resize a picture to any width or height, keep or override the aspect ratio, and download instantly."
+      "desc": "Resize a picture to any width or height, keep or override the aspect ratio, and download instantly.",
+      "intro": "Great for social media images, thumbnails and website assets where exact pixel dimensions matter."
     },
     {
       "slug": "image-cropper",
       "title": "Image Cropper",
       "category": "image",
-      "desc": "Crop any image to a free selection or fixed ratios like 1:1, 16:9 and 4:3, entirely in your browser."
+      "desc": "Crop any image to a free selection or fixed ratios like 1:1, 16:9 and 4:3, entirely in your browser.",
+      "intro": "Useful for profile pictures, banner art and print layouts that need precise aspect ratios."
     },
     {
       "slug": "image-editor",
       "title": "Image Editor",
       "category": "image",
-      "desc": "Adjust brightness, contrast, saturation, blur and rotation. Flip, tint or add a watermark. All local."
+      "desc": "Adjust brightness, contrast, saturation, blur and rotation. Flip, tint or add a watermark. All local.",
+      "intro": "A lightweight photo retoucher that handles everyday edits without any installs or accounts."
     },
     {
       "slug": "memes",
       "title": "Meme Generator",
       "category": "image",
-      "desc": "Add top and bottom captions to your own image in classic meme style with adjustable styling."
+      "desc": "Add top and bottom captions to your own image in classic meme style with adjustable styling.",
+      "intro": "Make funny memes in seconds - your image and captions are rendered locally, so nothing is stored."
     },
     {
       "slug": "image-diff",
       "title": "Image Diff Checker",
       "category": "image",
-      "desc": "Find visual differences between two images with side-by-side, overlay or pixel-diff views."
+      "desc": "Find visual differences between two images with side-by-side, overlay or pixel-diff views.",
+      "intro": "Handy for designers and developers comparing design mockups, screenshots or regression tests."
     },
     {
       "slug": "animated-gif-maker",
       "title": "Animated GIF Maker",
       "category": "image",
-      "desc": "Turn several images or a short video into a looping animated GIF with frame delay control."
+      "desc": "Turn several images or a short video into a looping animated GIF with frame delay control.",
+      "intro": "Convert video clips or image sequences into shareable GIFs right on your device."
     },
     {
       "slug": "webp-converter",
       "title": "WEBP Converter",
       "category": "image",
-      "desc": "Convert WEBP files to PNG or JPG, or encode other formats into WEBP with quality control."
+      "desc": "Convert WEBP files to PNG or JPG, or encode other formats into WEBP with quality control.",
+      "intro": "Modern small-format images made easy, whether you are optimising a website or working with mixed file types."
     },
     {
       "slug": "pdf-merge",
       "title": "PDF Merger",
       "category": "pdf",
-      "desc": "Combine multiple PDF files into one document in the order you choose, in your browser."
+      "desc": "Combine multiple PDF files into one document in the order you choose, in your browser.",
+      "intro": "Put receipts, scans or chapters into a single document without uploading anything."
     },
     {
       "slug": "pdf-split",
       "title": "PDF Splitter",
       "category": "pdf",
-      "desc": "Split a PDF into single pages or extract a page range, and download pages individually or as a new PDF."
+      "desc": "Split a PDF into single pages or extract a page range, and download pages individually or as a new PDF.",
+      "intro": "Extract only the pages you need and leave the rest - useful for sharing part of a document."
     },
     {
       "slug": "pdf-compress",
       "title": "PDF Compressor",
       "category": "pdf",
-      "desc": "Reduce PDF file size by recompressing images with selectable quality. Files never leave your device."
+      "desc": "Reduce PDF file size by recompressing images with selectable quality. Files never leave your device.",
+      "intro": "Shrink PDFs before emailing or uploading them, with visible size savings computed as you adjust quality."
     },
     {
       "slug": "pdf-to-images",
       "title": "PDF to Images",
       "category": "pdf",
-      "desc": "Render each page of a PDF document as a high-quality PNG or JPG image. Runs fully offline."
+      "desc": "Render each page of a PDF document as a high-quality PNG or JPG image. Runs fully offline.",
+      "intro": "Create image snapshots of any page for previews, screenshots or slides without needing a PDF reader."
     },
     {
       "slug": "text-to-pdf",
       "title": "Text to PDF",
       "category": "pdf",
-      "desc": "Turn plain text or Markdown into a clean, downloadable PDF with font and size options."
+      "desc": "Turn plain text or Markdown into a clean, downloadable PDF with font and size options.",
+      "intro": "Format reports, notes or READMEs into a clean document you can download and share."
     },
     {
       "slug": "images-to-pdf",
       "title": "Images to PDF",
       "category": "pdf",
-      "desc": "Combine multiple images (JPG, PNG, WEBP) into a single PDF file with page-size control."
+      "desc": "Combine multiple images (JPG, PNG, WEBP) into a single PDF file with page-size control.",
+      "intro": "Package a photo batch or scanned pages into one PDF with a page size you choose."
     },
     {
       "slug": "zip-compressor",
       "title": "ZIP Compressor",
       "category": "pdf",
-      "desc": "Create ZIP archives from multiple files or extract ZIP files — right in the browser."
+      "desc": "Create ZIP archives from multiple files or extract ZIP files - right in the browser.",
+      "intro": "Bundle and compress files, or unpack existing archives - all processed locally."
     },
     {
       "slug": "file-hash-checker",
       "title": "File Hash Checker",
       "category": "pdf",
-      "desc": "Verify MD5, SHA-1 and SHA-256 checksums of any file locally, before trusting a download."
+      "desc": "Verify MD5, SHA-1 and SHA-256 checksums of any file locally, before trusting a download.",
+      "intro": "Confirm a download is intact and untampered before you trust it."
     },
     {
       "slug": "file-metadata",
       "title": "File Metadata Reader",
       "category": "pdf",
-      "desc": "Inspect file names, sizes, MIME types and dates without uploading anything."
+      "desc": "Inspect file names, sizes, MIME types and dates without uploading anything.",
+      "intro": "See what a file actually is - good for spotting wrong extensions or validating exports."
     },
     {
       "slug": "case-converter",
       "title": "Case Converter",
       "category": "text",
-      "desc": "Convert text to UPPER, lower, Title Case, camelCase, kebab-case and more with live preview."
+      "desc": "Convert text to UPPER, lower, Title Case, camelCase, kebab-case and more with live preview.",
+      "intro": "Instant text casing for headlines, code identifiers and social posts."
     },
     {
       "slug": "word-counter",
       "title": "Word & Character Counter",
       "category": "text",
-      "desc": "Count words, characters, sentences, paragraphs and reading time as you type or paste."
+      "desc": "Count words, characters, sentences, paragraphs and reading time as you type or paste.",
+      "intro": "Great for essays, tweets, meta descriptions and anywhere a word limit applies."
     },
     {
       "slug": "text-to-speech",
       "title": "Text to Speech",
       "category": "text",
-      "desc": "Listen to any text spoken aloud with your browser speech engine, with rate and pitch controls."
+      "desc": "Listen to any text spoken aloud with your browser speech engine, with rate and pitch controls.",
+      "intro": "Turn articles, notes or drafts into audio you can listen to hands-free."
     },
     {
       "slug": "reverse-text",
       "title": "Reverse Text",
       "category": "text",
-      "desc": "Reverse text, words, or lines and generate upside-down (flipped) Unicode characters."
+      "desc": "Reverse text, words, or lines and generate upside-down (flipped) Unicode characters.",
+      "intro": "Fun for puzzles, backwards messages and flipped Unicode for social bio tricks."
     },
     {
       "slug": "remove-duplicate-lines",
       "title": "Remove Duplicate Lines",
       "category": "text",
-      "desc": "Deduplicate lines and sort them alphabetically or by length — instantly, offline."
+      "desc": "Deduplicate lines and sort them alphabetically or by length - instantly, offline.",
+      "intro": "Clean up copied lists, CSV exports and config files in one click."
     },
     {
       "slug": "text-cleaner",
       "title": "Text Cleaner",
       "category": "text",
-      "desc": "Trim whitespace, collapse blank lines, replace smart quotes and clean up copied text."
+      "desc": "Trim whitespace, collapse blank lines, replace smart quotes and clean up copied text.",
+      "intro": "Fix the messy leftovers of copy-pasting from emails, word processors and websites."
     },
     {
       "slug": "lorem-generator",
       "title": "Lorem Ipsum Generator",
       "category": "text",
-      "desc": "Generate lorem ipsum or real-word filler in paragraphs, sentences or words."
+      "desc": "Generate lorem ipsum or real-word filler in paragraphs, sentences or words.",
+      "intro": "Quick filler text for mockups, design comps and placeholder content."
     },
     {
       "slug": "markdown-editor",
       "title": "Markdown Editor",
       "category": "text",
-      "desc": "Write Markdown with a live rendered preview, then export the HTML output."
+      "desc": "Write Markdown with a live rendered preview, then export the HTML output.",
+      "intro": "Draft docs or blog posts with a live preview and copy the finished HTML."
     },
     {
       "slug": "slug-url-generator",
       "title": "Slug URL Generator",
       "category": "text",
-      "desc": "Turn any title or phrase into a clean, SEO-friendly URL slug."
+      "desc": "Turn any title or phrase into a clean, SEO-friendly URL slug.",
+      "intro": "Create clean, consistent URL slugs for CMS posts, routes and anchors."
     },
     {
       "slug": "ascii-art-generator",
       "title": "ASCII Art Generator",
       "category": "text",
-      "desc": "Convert text into block-letter ASCII art, or convert images into character art."
+      "desc": "Convert text into block-letter ASCII art, or convert images into character art.",
+      "intro": "Make standout terminal headers, code comments and retro art."
     },
     {
       "slug": "rich-text-cleaner",
       "title": "Rich Text Cleaner",
       "category": "text",
-      "desc": "Paste messy content from Word or web pages and get clean, formatted plain text."
+      "desc": "Paste messy content from Word or web pages and get clean, formatted plain text.",
+      "intro": "Paste content that has formatting you do not want and get tidy plain text."
     },
     {
       "slug": "json-formatter",
       "title": "JSON Formatter & Validator",
       "category": "developer",
-      "desc": "Format, minify and validate JSON with syntax highlighting and CSV export."
+      "desc": "Format, minify and validate JSON with syntax highlighting and CSV export.",
+      "intro": "Debug APIs and configs faster with readable output, validation and CSV export."
     },
     {
       "slug": "json-vs-yaml",
       "title": "JSON to YAML Converter",
       "category": "developer",
-      "desc": "Convert between JSON and YAML in both directions with validation."
+      "desc": "Convert between JSON and YAML in both directions with validation.",
+      "intro": "Translate configs between JSON and YAML without installing a converter."
     },
     {
       "slug": "html-minifier",
       "title": "HTML Minifier",
       "category": "developer",
-      "desc": "Minify or pretty-print HTML, preserving script and style contents."
+      "desc": "Minify or pretty-print HTML, preserving script and style contents.",
+      "intro": "Ship smaller HTML files while keeping scripts and styles intact."
     },
     {
       "slug": "css-minifier",
       "title": "CSS Minifier",
       "category": "developer",
-      "desc": "Strip comments and whitespace from CSS to shrink stylesheets for production."
+      "desc": "Strip comments and whitespace from CSS to shrink stylesheets for production.",
+      "intro": "Trim the fat from stylesheets for faster page loads."
     },
     {
       "slug": "js-minifier",
       "title": "JS Minifier",
       "category": "developer",
-      "desc": "String-aware JavaScript whitespace and comment removal. Safe for most scripts."
+      "desc": "String-aware JavaScript whitespace and comment removal. Safe for most scripts.",
+      "intro": "Reduce script size for production without mangling strings or string-adjacent comments."
     },
     {
       "slug": "sql-formatter",
       "title": "SQL Formatter",
       "category": "developer",
-      "desc": "Format SQL queries with keyword capitalisation and indentation for readability."
+      "desc": "Format SQL queries with keyword capitalisation and indentation for readability.",
+      "intro": "Make long queries readable for debugging and code review."
     },
     {
       "slug": "url-encoder",
       "title": "URL Encoder / Decoder",
       "category": "developer",
-      "desc": "Percent-encode or decode URLs and query strings with strictness options."
+      "desc": "Percent-encode or decode URLs and query strings with strictness options.",
+      "intro": "Encode user input safely for links, query strings and API parameters."
     },
     {
       "slug": "url-parser",
       "title": "URL Parser",
       "category": "developer",
-      "desc": "Break any URL into protocol, host, port, path, query params and fragment."
+      "desc": "Break any URL into protocol, host, port, path, query params and fragment.",
+      "intro": "Understand exactly what a URL does - useful when debugging links or writing scrapers."
     },
     {
       "slug": "base64-encoder",
       "title": "Base64 Encoder / Decoder",
       "category": "developer",
-      "desc": "Encode text or files to Base64, or decode Base64 back to text or a file."
+      "desc": "Encode text or files to Base64, or decode Base64 back to text or a file.",
+      "intro": "Encode binaries or text for API payloads, data URIs and email attachments."
     },
     {
       "slug": "jwt-decoder",
       "title": "JWT Decoder",
       "category": "developer",
-      "desc": "Decode the header and payload of a JWT token locally and inspect its claims."
+      "desc": "Decode the header and payload of a JWT token locally and inspect its claims.",
+      "intro": "Inspect token claims and expiration without pasting secrets into a third-party site."
     },
     {
       "slug": "html-entity-encoder",
       "title": "HTML Entity Encoder",
       "category": "developer",
-      "desc": "Escape or unescape HTML entities to keep dynamic content safe in markup."
+      "desc": "Escape or unescape HTML entities to keep dynamic content safe in markup.",
+      "intro": "Safely escape dynamic content before inserting it into markup."
     },
     {
       "slug": "regex-tester",
       "title": "Regex Tester",
       "category": "developer",
-      "desc": "Test regular expressions against sample text with flags, matches and groups."
+      "desc": "Test regular expressions against sample text with flags, matches and groups.",
+      "intro": "Iterate on patterns with live matches, groups and flags."
     },
     {
       "slug": "uuid-generator",
       "title": "UUID Generator",
       "category": "developer",
-      "desc": "Generate v4 and v7 UUIDs in bulk, with uppercase and batch options."
+      "desc": "Generate v4 and v7 UUIDs in bulk, with uppercase and batch options.",
+      "intro": "Generate unique IDs for databases, test fixtures and tracking codes."
     },
     {
       "slug": "password-generator",
       "title": "Password Generator",
       "category": "developer",
-      "desc": "Create strong random passwords and memorable passphrases with full control."
+      "desc": "Create strong random passwords and memorable passphrases with full control.",
+      "intro": "Create strong, diverse credentials plus easy-to-remember passphrases."
     },
     {
       "slug": "crypto-hash",
       "title": "Hash Generator",
       "category": "developer",
-      "desc": "Compute MD5, SHA-1, SHA-256 and SHA-512 hashes of text or files in-browser."
+      "desc": "Compute MD5, SHA-1, SHA-256 and SHA-512 hashes of text or files in-browser.",
+      "intro": "Verify or fingerprint strings and files with common hash algorithms."
     },
     {
       "slug": "qr-code-generator",
       "title": "QR Code Generator",
       "category": "developer",
-      "desc": "Create scannable QR codes from text, URLs or WiFi credentials with custom colours."
+      "desc": "Create scannable QR codes from text, URLs or WiFi credentials with custom colours.",
+      "intro": "Share links, text or WiFi details through a scannable code."
     },
     {
       "slug": "barcode-generator",
       "title": "Barcode Generator",
       "category": "developer",
-      "desc": "Generate EAN-13 barcodes from any 12 or 13 digit number and download as PNG. Works fully offline."
+      "desc": "Generate EAN-13 barcodes from any 12 or 13 digit number and download as PNG. Works fully offline.",
+      "intro": "Produce retail-ready EAN-13 barcodes offline for labels and packaging."
     },
     {
       "slug": "number-base-converter",
       "title": "Base Converter",
       "category": "developer",
-      "desc": "Convert between binary, octal, decimal and hexadecimal, with bit-length options."
+      "desc": "Convert between binary, octal, decimal and hexadecimal, with bit-length options.",
+      "intro": "Switch number systems for programming, networking and debugging."
     },
     {
       "slug": "diff-checker",
       "title": "Diff Checker",
       "category": "developer",
-      "desc": "Compare two texts and highlight added, removed and changed lines."
+      "desc": "Compare two texts and highlight added, removed and changed lines.",
+      "intro": "Spot exactly what changed between two versions of any text."
     },
     {
       "slug": "ip-lookup",
       "title": "IP Lookup",
       "category": "developer",
-      "desc": "Find networks, versions and CIDR details for IPv4 and IPv6 addresses."
+      "desc": "Find networks, versions and CIDR details for IPv4 and IPv6 addresses.",
+      "intro": "Inspect addresses and CIDR details when configuring networks or security rules."
     },
     {
       "slug": "server-status-checker",
       "title": "Server Status Checker",
       "category": "developer",
-      "desc": "Check whether a website is online with HTTP status, redirects and response time."
+      "desc": "Check whether a website is online with HTTP status, redirects and response time.",
+      "intro": "Quickly confirm a site is live and see how fast it responds."
     },
     {
       "slug": "favicon-generator",
       "title": "Favicon Generator",
       "category": "generator",
-      "desc": "Create a favicon from an emoji, letter or gradient in any size, and download PNG variants."
+      "desc": "Create a favicon from an emoji, letter or gradient in any size, and download PNG variants.",
+      "intro": "Get a ready favicon from text, emoji or a gradient and drop it into your site."
     },
     {
       "slug": "username-generator",
       "title": "Username Generator",
       "category": "generator",
-      "desc": "Generate catchy usernames from adjectives, animals and numbers for any platform."
+      "desc": "Generate catchy usernames from adjectives, animals and numbers for any platform.",
+      "intro": "Brainstorm available-sounding handles and usernames in seconds."
     },
     {
       "slug": "color-palette-generator",
       "title": "Color Palette Generator",
       "category": "generator",
-      "desc": "Generate harmonious 5-color palettes from any base colour, with HEX/CSV export."
+      "desc": "Generate harmonious 5-color palettes from any base colour, with HEX/CSV export.",
+      "intro": "Build harmonious colour sets for branding, design and CSS variables."
     },
     {
       "slug": "css-background-patterns",
       "title": "CSS Background Patterns",
       "category": "generator",
-      "desc": "Generate repeatable CSS background patterns with a live preview and one-click copy."
+      "desc": "Generate repeatable CSS background patterns with a live preview and one-click copy.",
+      "intro": "Add subtle patterned backgrounds with ready-to-copy CSS."
     },
     {
       "slug": "calendar-year-generator",
       "title": "Year Calendar",
       "category": "generator",
-      "desc": "Generate a printable full-year calendar for any year, with holidays and week numbers."
+      "desc": "Generate a printable full-year calendar for any year, with holidays and week numbers.",
+      "intro": "Produce a printable year overview with week numbers and holidays."
     },
     {
       "slug": "random-number-generator",
       "title": "Random Number Generator",
       "category": "generator",
-      "desc": "Generate cryptographically secure random numbers in any range, with counts and sorting."
+      "desc": "Generate cryptographically secure random numbers in any range, with counts and sorting.",
+      "intro": "Draw secure random numbers for raffles, sampling and testing."
     },
     {
       "slug": "event-countdown-generator",
       "title": "Event Countdown",
       "category": "generator",
-      "desc": "Build a shareable link to a live countdown for any date and time."
+      "desc": "Build a shareable link to a live countdown for any date and time.",
+      "intro": "Share a live countdown link for launch days, deadlines and events."
     },
     {
       "slug": "percentage-calculator",
       "title": "Percentage Calculator",
       "category": "calculator",
-      "desc": "Calculate percentages instantly: what is X% of Y, percent change, and more."
+      "desc": "Calculate percentages instantly: what is X% of Y, percent change, and more.",
+      "intro": "Solve everyday math - discounts, growth and proportions - instantly."
     },
     {
       "slug": "bmi-calculator",
       "title": "BMI Calculator",
       "category": "calculator",
-      "desc": "Calculate your Body Mass Index and check which weight category it falls in."
+      "desc": "Calculate your Body Mass Index and check which weight category it falls in.",
+      "intro": "Get your BMI and the weight category it maps to."
     },
     {
       "slug": "loan-calculator",
       "title": "Loan Calculator",
       "category": "calculator",
-      "desc": "Estimate monthly payments, total interest and amortisation for any loan."
+      "desc": "Estimate monthly payments, total interest and amortisation for any loan.",
+      "intro": "See the real cost of borrowing before you commit."
     },
     {
       "slug": "age-calculator",
       "title": "Age Calculator",
       "category": "calculator",
-      "desc": "Work out your exact age in years, months and days from any date of birth."
+      "desc": "Work out your exact age in years, months and days from any date of birth.",
+      "intro": "Find the exact age between any two dates."
     },
     {
       "slug": "discount-calculator",
       "title": "Discount Calculator",
       "category": "calculator",
-      "desc": "Find the final price after a percentage discount and how much you save."
+      "desc": "Find the final price after a percentage discount and how much you save.",
+      "intro": "Know the final price and your savings while you shop."
     },
     {
       "slug": "tip-calculator",
       "title": "Tip Calculator",
       "category": "calculator",
-      "desc": "Split a bill with your chosen tip percentage and see the per-person amount."
+      "desc": "Split a bill with your chosen tip percentage and see the per-person amount.",
+      "intro": "Split restaurant bills and tips fairly among friends."
     },
     {
       "slug": "unit-converter",
       "title": "Unit Converter",
       "category": "calculator",
-      "desc": "Convert length, weight, temperature, data, speed, time, volume, area and fuel units."
+      "desc": "Convert length, weight, temperature, data, speed, time, volume, area and fuel units.",
+      "intro": "Convert between metric and imperial units, temperatures and data sizes."
     },
     {
       "slug": "triangle-calculator",
       "title": "Triangle Calculator",
       "category": "calculator",
-      "desc": "Solve right triangles and compute area, perimeter and hypotenuse from two values."
+      "desc": "Solve right triangles and compute area, perimeter and hypotenuse from two values.",
+      "intro": "Solve right-triangle geometry from just two known values."
     },
     {
       "slug": "color-picker",
       "title": "Color Picker",
       "category": "color",
-      "desc": "Pick any colour and immediately see its HEX, RGB, HSL and named-colour code."
+      "desc": "Pick any colour and immediately see its HEX, RGB, HSL and named-colour code.",
+      "intro": "Grab colours from your screen and copy their codes instantly."
     },
     {
       "slug": "color-converter",
       "title": "Color Converter",
       "category": "color",
-      "desc": "Convert between HEX, RGB, HSL and CSS named colours, with live preview."
+      "desc": "Convert between HEX, RGB, HSL and CSS named colours, with live preview.",
+      "intro": "Translate colour codes between formats for CSS and design tools."
     },
     {
       "slug": "color-mixer",
       "title": "Color Mixer",
       "category": "color",
-      "desc": "Blend, shade and tint two colours and adjust the mix ratio visually."
+      "desc": "Blend, shade and tint two colours and adjust the mix ratio visually.",
+      "intro": "Mix and adjust colours visually to find the perfect shade."
     },
     {
       "slug": "color-contrast",
       "title": "Color Contrast Checker",
       "category": "color",
-      "desc": "Verify WCAG contrast ratios between two colours for accessible text."
+      "desc": "Verify WCAG contrast ratios between two colours for accessible text.",
+      "intro": "Make sure text passes WCAG accessibility requirements."
     },
     {
       "slug": "color-name",
       "title": "Color Name Finder",
       "category": "color",
-      "desc": "Find the nearest CSS colour name to any HEX or RGB value."
+      "desc": "Find the nearest CSS colour name to any HEX or RGB value.",
+      "intro": "Put a friendly name to any colour code."
     },
     {
       "slug": "meta-tag-generator",
       "title": "Meta Tag Generator",
       "category": "web",
-      "desc": "Generate SEO meta tags for title, description, Open Graph and Twitter cards."
+      "desc": "Generate SEO meta tags for title, description, Open Graph and Twitter cards.",
+      "intro": "Generate proper SEO tags and social preview metadata for any page."
     },
     {
       "slug": "ssl-checker",
       "title": "SSL Certificate Checker",
       "category": "web",
-      "desc": "Check a domain certificate from your browser, showing issuer and expiry."
+      "desc": "Check a domain certificate from your browser, showing issuer and expiry.",
+      "intro": "Check when a domain certificate expires and who issued it."
     },
     {
       "slug": "html-headings-extractor",
       "title": "Heading Tree Extractor",
       "category": "web",
-      "desc": "Extract the H1-H6 outline from any HTML so you can review your heading structure."
+      "desc": "Extract the H1-H6 outline from any HTML so you can review your heading structure.",
+      "intro": "Review your heading hierarchy before publishing."
     },
     {
       "slug": "sitemap-validator",
       "title": "Sitemap Validator",
       "category": "web",
-      "desc": "Validate and inspect any XML sitemap or robots.txt file, with counts and warnings."
+      "desc": "Validate and inspect any XML sitemap or robots.txt file, with counts and warnings.",
+      "intro": "Validate your sitemap and robots.txt before submitting to search engines."
     },
     {
       "slug": "robots-txt-generator",
       "title": "Robots.txt Generator",
       "category": "web",
-      "desc": "Build a correct robots.txt with user agents, allow/deny rules and sitemap links."
+      "desc": "Build a correct robots.txt with user agents, allow/deny rules and sitemap links.",
+      "intro": "Create a correct robots.txt and avoid accidental blocking."
     },
     {
       "slug": "webpage-metadata-extractor",
       "title": "Webpage Metadata Extractor",
       "category": "web",
-      "desc": "Paste HTML and extract title, description, images and social preview tags."
+      "desc": "Paste HTML and extract title, description, images and social preview tags.",
+      "intro": "See every SEO and social tag a page exposes at a glance."
     }
   ]
 }

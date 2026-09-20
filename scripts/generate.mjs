@@ -222,6 +222,7 @@ for (const t of meta.tools) {
         <span data-fav-insert></span>
       </div>
       <p class="tool-intro">${esc(t.desc)}</p>
+      <p class="tool-about">${esc(t.intro || "")}</p>
       <div class="ad-slot" data-slot="tool-top" aria-hidden="true"></div>
       <div class="tool-shell"><div class="tool-pane" id="app"></div></div>`,
       {
@@ -230,7 +231,7 @@ for (const t of meta.tools) {
           "@context": "https://schema.org",
           "@type": "WebApplication",
           name: t.title,
-          description: t.desc,
+          description: ((t.desc + " " + (t.intro || "")).trim()),
           applicationCategory: "UtilitiesApplication",
           operatingSystem: "Any (web)",
           browserRequirements: "Requires JavaScript",

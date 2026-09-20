@@ -224,6 +224,7 @@ h4 { font-size: 0.98rem; }
 .crumbs a { color: var(--muted); }
 .crumbs a:hover { color: var(--accent); }
 .tool-intro { color: var(--muted); margin: 0 0 6px; max-width: 720px; }
+.tool-about { color: var(--text); line-height: 1.6; margin: 0 0 14px; max-width: 720px; }
 .page-title-row { display: flex; align-items: center; gap: 10px; margin: 8px 0 6px; }
 .static-page h1 { margin-bottom: 14px; }
 .static-page h3 { margin-top: 20px; }
