@@ -7,7 +7,7 @@ const root = join(__dirname, "..");
 const dist = join(root, "dist");
 
 const meta = JSON.parse(readFileSync(join(root, "src/tools/meta.json"), "utf8"));
-const SITE = "https://toolverse-phi.vercel.app";
+const SITE = "https://toolverse-rose.vercel.app";
 const YEAR = new Date().getFullYear();
 const ASSET_JS = "/assets/app.js";
 const ASSET_CSS = "/assets/app.css";

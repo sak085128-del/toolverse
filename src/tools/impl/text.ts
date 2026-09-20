@@ -213,7 +213,7 @@ Start with a **bold** idea. This is a _live_ preview.
 const greet = () =&gt; "hi";
 \`\`\`
 
-[Links](https://toolverse-phi.vercel.app) work too.</textarea><div class="md-preview" data-put></div></div>` +
+[Links](https://toolverse-rose.vercel.app) work too.</textarea><div class="md-preview" data-put></div></div>` +
       btn("Export HTML", "exp") + copyBtn("Copy HTML", ""),
     init: (root) => {
       const render = () => {

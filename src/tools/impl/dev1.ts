@@ -148,7 +148,7 @@ const devTools1: Record<string, ToolImpl> = {
   },
 
   "url-parser": {
-    markup: () => textarea("in", "Full URL", "https://user:pass@toolverse-phi.vercel.app:443/path/to/page?slug=demo&v=2#section", 3) +
+    markup: () => textarea("in", "Full URL", "https://user:pass@toolverse-rose.vercel.app:443/path/to/page?slug=demo&v=2#section", 3) +
       btnRow(btn("Parse", "go", true)) +
       `<div class="results" data-put></div>`,
     init: (root) => {

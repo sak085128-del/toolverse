@@ -140,7 +140,7 @@ const devTools2: Record<string, ToolImpl> = {
   "qr-code-generator": {
     markup: () => `<div class="row">
         <div class="col"><label class="field"><span>Type</span><select data-node="kind"><option value="text">Text / URL</option><option value="wifi">WiFi</option><option value="vcard">vCard</option></select></label></div>
-        <div class="col col-wide"><label class="field"><span>Content</span><input data-node="txt" type="text" value="https://toolverse-phi.vercel.app" spellcheck="false"></label></div></div>
+        <div class="col col-wide"><label class="field"><span>Content</span><input data-node="txt" type="text" value="https://toolverse-rose.vercel.app" spellcheck="false"></label></div></div>
       <div class="row" data-wifi hidden>
         <div class="col"><label class="field"><span>SSID</span><input data-node="ssid" type="text"></label></div>
         <div class="col"><label class="field"><span>Key</span><input data-node="key" type="text"></label></div>
@@ -343,7 +343,7 @@ new text</textarea></div></div>` +
 
   "server-status-checker": {
     markup: () => `<div class="row">
-        <div class="col col-wide"><label class="field"><span>Website URL</span><input data-node="url" type="text" value="https://toolverse-phi.vercel.app" spellcheck="false"></label></div>
+        <div class="col col-wide"><label class="field"><span>Website URL</span><input data-node="url" type="text" value="https://toolverse-rose.vercel.app" spellcheck="false"></label></div>
         <div class="col"><button type="button" class="btn primary btn-btm" data-node="go">Check</button></div></div>
       <div class="results" data-put></div>` + statusBox("st") + privacyNoteServer(),
     init: (root) => {
