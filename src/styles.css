@@ -95,11 +95,12 @@ h4 { font-size: 0.98rem; }
   justify-content: center;
   width: 26px;
   height: 26px;
+}
+.logo-mark svg {
+  width: 26px;
+  height: 26px;
   border-radius: 7px;
-  background: var(--accent);
-  color: var(--accent-contrast);
-  font-weight: 800;
-  font-size: 0.85rem;
+  display: block;
 }
 .nav-spacer { flex: 1; }
 .nav-links { display: flex; align-items: center; gap: 4px; }

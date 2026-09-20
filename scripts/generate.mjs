@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, readdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -9,8 +9,19 @@ const dist = join(root, "dist");
 const meta = JSON.parse(readFileSync(join(root, "src/tools/meta.json"), "utf8"));
 const SITE = "https://toolverse-rose.vercel.app";
 const YEAR = new Date().getFullYear();
-const ASSET_JS = "/assets/app.js";
-const ASSET_CSS = "/assets/app.css";
+
+function findAsset(basename, ext) {
+  try {
+    const hit = readdirSync(join(dist, "assets")).find(
+      (f) => f.startsWith(basename + ".") && f.endsWith(ext)
+    );
+    return hit ? "/assets/" + hit : null;
+  } catch {
+    return null;
+  }
+}
+const ASSET_JS = findAsset("index", ".js") ?? "/assets/index.js";
+const ASSET_CSS = findAsset("style", ".css") ?? "/assets/style.css";
 const ADSENSE = '<meta name="google-adsense-account" content="ca-pub-3202800303748206">';
 const GOOGLE_VERIFY = '<meta name="google-site-verification" content="googleb47353d761b6715d">';
 
@@ -48,7 +59,7 @@ function head(title, desc, canonical, jsonld) {
 function header() {
   return `<header class="site-header">
     <div class="header-inner">
-      <a class="logo" href="/"><span class="logo-mark">T</span>ToolVerse</a>
+      <a class="logo" href="/"><span class="logo-mark"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><defs><linearGradient id="lgm" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse"><stop stop-color="#6366f1"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs><rect x="2" y="2" width="44" height="44" rx="12" fill="url(#lgm)"/><path d="M36.9 31.2 26.6 20.9a7.5 7.5 0 0 0-2-7.9 7.6 7.5 0 0 0-8.6-1.5l4.9 4.9-3.3 3.3-4.9-4.9a7.6 7.6 0 0 0 1.5 8.7 7.5 7.5 0 0 0 7.9 2l10.3 10.3a1.6 1.6 0 0 0 2.3 0l2.2-2.3a1.6 1.6 0 0 0 0-2.3Z" fill="#fff"/><circle cx="33" cy="33" r="1.6" fill="url(#lgm)"/></svg></span>ToolVerse</a>
       <nav class="nav-spacer"></nav>
       <nav class="nav-links">
         <a href="/tools/" class="nav-hide">All tools</a>

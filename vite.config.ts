@@ -6,12 +6,9 @@ export default defineConfig({
     chunkSizeWarningLimit: 650,
     rollupOptions: {
       output: {
-        entryFileNames: "assets/app.js",
+        entryFileNames: "assets/[name].[hash].js",
         chunkFileNames: "assets/[name].[hash].js",
-        assetFileNames: (info) =>
-          info.name && info.name.endsWith(".css")
-            ? "assets/app.css"
-            : "assets/[name].[hash][extname]",
+        assetFileNames: "assets/[name].[hash][extname]",
       },
     },
   },

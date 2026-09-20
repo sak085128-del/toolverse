@@ -8,6 +8,11 @@ import { CATEGORIES, TOOL_META, categoryLabel, toolsByCategory, searchTools, loa
 initAnalytics();
 trackToolViews(TOOL_META.map((t) => ({ slug: t.slug, title: t.title })));
 
+try {
+  navigator.serviceWorker?.getRegistrations?.().then((rs) => rs.forEach((r) => r.unregister()));
+  if (caches?.keys) caches.keys().then((keys) => keys.forEach((k) => caches.delete(k)));
+} catch { /* ignore */ }
+
 const page = document.body.dataset.page || "home";
 const root = document.getElementById("app");
 
