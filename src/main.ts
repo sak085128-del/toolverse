@@ -54,10 +54,6 @@ function wireFav(el: HTMLElement): void {
 
 track("page_view", { page, path: location.pathname });
 
-if (navigator.serviceWorker && location.protocol === "https:") {
-  navigator.serviceWorker.register("/sw.js").catch(() => undefined);
-}
-
 if (page === "tool") void initTool();
 else if (page === "home") initHome();
 else if (page === "category") initCategory();

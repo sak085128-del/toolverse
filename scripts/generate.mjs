@@ -11,8 +11,7 @@ const SITE = "https://toolverse-phi.vercel.app";
 const YEAR = new Date().getFullYear();
 const ASSET_JS = "/assets/app.js";
 const ASSET_CSS = "/assets/app.css";
-const MONETAG =
-  '<script src="https://quge5.com/88/tag.min.js" data-zone="282977" async data-cfasync="false"></script>';
+const ADSENSE = '<meta name="google-adsense-account" content="ca-pub-3202800303748206">';
 
 const esc = (s) =>
   String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -38,8 +37,8 @@ function head(title, desc, canonical, jsonld) {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  ${ADSENSE}
   <link rel="stylesheet" href="${ASSET_CSS}">
-  ${MONETAG}
   ${ld}
 </head>`;
 }
