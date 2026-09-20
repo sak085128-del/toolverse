@@ -1,10 +1,12 @@
 import "./styles.css";
+import { injectSpeedInsights } from "@vercel/speed-insights";
 import { applyTheme, cycleTheme, getTheme, pushRecent, isFavorite, toggleFavorite } from "./lib/store";
 import { initAnalytics, track, trackToolViews } from "./lib/track";
 import { copyText, toast } from "./lib/core";
 import { adSlot, favoriteStar } from "./lib/ui";
 import { CATEGORIES, TOOL_META, categoryLabel, toolsByCategory, searchTools, loadTool } from "./tools/registry";
 
+injectSpeedInsights();
 initAnalytics();
 trackToolViews(TOOL_META.map((t) => ({ slug: t.slug, title: t.title })));
 
