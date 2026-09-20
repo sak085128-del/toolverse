@@ -3,6 +3,7 @@ import { defineConfig } from "vite";
 export default defineConfig({
   build: {
     cssCodeSplit: false,
+    chunkSizeWarningLimit: 650,
     rollupOptions: {
       output: {
         entryFileNames: "assets/app.js",
