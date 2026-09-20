@@ -123,16 +123,19 @@ const image2: Record<string, ToolImpl> = {
       btnRow(btn("Download", "go", true), btn("Reset", "reset")) + statusBox("st") + privacyNote(),
     init: (root) => {
       const cv = root.querySelector<HTMLCanvasElement>("[data-cv]");
+      const orig = { w: 0, h: 0 };
       let source: HTMLImageElement | null = null;
       wireDropzone(root, async (files) => {
         const f = files[0];
         if (!f) return;
         const c = await imageFileToCanvas(f, 1600);
+        orig.w = c.width;
+        orig.h = c.height;
         source = new Image();
+        cv!.width = orig.w;
+        cv!.height = orig.h;
+        source.onload = () => render();
         source.src = c.toDataURL("image/png");
-        cv!.width = c.width;
-        cv!.height = c.height;
-        render();
       });
       const render = () => {
         const ctx2 = cv?.getContext("2d");
@@ -145,6 +148,10 @@ const image2: Record<string, ToolImpl> = {
         const fh = (root.querySelector("[data-node='fliph']") as HTMLInputElement).checked;
         const fv = (root.querySelector("[data-node='flipv']") as HTMLInputElement).checked;
         const wm = (root.querySelector("[data-node='wm']") as HTMLInputElement).checked;
+        const swap = rot % 2 === 1;
+        const tw = swap ? orig.h : orig.w;
+        const th = swap ? orig.w : orig.h;
+        if (cv.width !== tw || cv.height !== th) { cv.width = tw; cv.height = th; }
         const filters: string[] = [];
         if (bright) filters.push(`brightness(${1 + bright / 100})`);
         if (contrast) filters.push(`contrast(${1 + contrast / 100})`);
@@ -152,17 +159,11 @@ const image2: Record<string, ToolImpl> = {
         if (blur) filters.push(`blur(${blur}px)`);
         ctx2.filter = filters.join(" ");
         ctx2.clearRect(0, 0, cv.width, cv.height);
-        const was = rot % 2 === 1;
-        if (was) {
-          const temp = cv.width;
-          cv.width = cv.height;
-          cv.height = temp;
-        }
         ctx2.save();
         ctx2.translate(cv.width / 2, cv.height / 2);
         ctx2.rotate((rot * Math.PI) / 2);
         ctx2.scale(fh ? -1 : 1, fv ? -1 : 1);
-        ctx2.drawImage(source, -cv.width / 2, -cv.height / 2, cv.width, cv.height);
+        ctx2.drawImage(source, -orig.w / 2, -orig.h / 2, orig.w, orig.h);
         ctx2.restore();
         ctx2.filter = "none";
         if (wm) {

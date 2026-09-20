@@ -61,7 +61,7 @@ export function copyBtn(title: string, text: string): string {
   return `<button type="button" class="btn mini" data-copy="${escAttr(text)}">${escHtml(title)}</button>`;
 }
 export function statusBox(id: string, msg = "Ready."): string {
-  return `<div class="status" data-node="${id}">${escHtml(msg)}</div>`;
+  return `<div class="status" role="status" data-node="${id}">${escHtml(msg)}</div>`;
 }
 
 export function escHtml(s: string): string {

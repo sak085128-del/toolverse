@@ -8,7 +8,7 @@ import { base64Decode, base64Encode, jsonToCsv } from "../../lib/file";
 
 const devTools1: Record<string, ToolImpl> = {
   "json-formatter": {
-    markup: () => textarea("in", "Paste JSON", '{"name":"ToolVerse","tools":78,"free":true,"features":["fast","private"]}', 10) +
+    markup: () => textarea("in", "Paste JSON", '{"name":"ToolVerse","tools":76,"free":true,"features":["fast","private"]}', 10) +
       btnRow(btn("Format", "fmt", true), btn("Minify", "min"), btn("Validate", "val"), btn("To CSV", "csv")) +
       `<div class="code-view" data-put></div>` +
       btnRow(copyBtn("Copy", ""), btn("Clear", "clear")) +
@@ -38,7 +38,7 @@ const devTools1: Record<string, ToolImpl> = {
   "json-vs-yaml": {
     markup: () => `<div class="row"><div class="col"><label class="field"><span>Direction</span><select data-node="dir">
       <option value="y2j">JSON → YAML</option><option value="j2y">YAML → JSON</option></select></label></div></div>` +
-      textarea("in", "Source", '{\n  "name": "ToolVerse",\n  "tools": 78,\n  "tags": ["free", "web"],\n  "nested": { "on": true }\n}', 10) +
+      textarea("in", "Source", '{\n  "name": "ToolVerse",\n  "tools": 76,\n  "tags": ["free", "web"],\n  "nested": { "on": true }\n}', 10) +
       btnRow(btn("Convert", "go", true)) +
       `<div class="code-view" data-put></div>` + btnRow(copyBtn("Copy", "")) + statusBox("st"),
     init: (root) => {

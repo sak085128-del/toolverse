@@ -597,3 +597,41 @@ details.tips summary { cursor: pointer; color: var(--text); }
   .md-grid { grid-template-columns: 1fr; }
   .cnum { font-size: 1.5rem; min-width: 2.6ch; }
 }
+
+/* Accessibility */
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 2px; }
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  padding: 9px 16px;
+  border-radius: 0 0 var(--radius-sm) 0;
+  z-index: 300;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.skip-link:focus { left: 0; top: 0; text-decoration: none; }
+
+/* FAQ section */
+.faq { margin: 28px 0 6px; }
+.faq-item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  margin: 8px 0;
+  padding: 4px 14px;
+}
+.faq-item summary { cursor: pointer; font-weight: 600; padding: 10px 0; color: var(--text); }
+.faq-item summary::-webkit-details-marker { color: var(--muted); }
+.faq-item p { color: var(--muted); margin: 0 0 12px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

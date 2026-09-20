@@ -11,7 +11,8 @@ export function dropzone(
   opts.label = opts.label || "Drop files here or click to browse";
   opts.sub = opts.sub || "Your files never leave this device.";
   return `
-  <div class="dropzone" data-drop data-multi="${opts.multiple ? "1" : "0"}" data-accept="${escHtml(opts.accept ?? "")}">
+  <div class="dropzone" data-drop data-multi="${opts.multiple ? "1" : "0"}" data-accept="${escHtml(opts.accept ?? "")}"
+    tabindex="0" role="button" aria-label="${escHtml(opts.label)}">
     <div class="dz-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5M12 3v12"/></svg></div>
     <p class="dz-main">${escHtml(opts.label)}</p>
     <p class="dz-sub">${escHtml(opts.sub)}</p>
@@ -70,6 +71,9 @@ export function wireDropzone(
   };
 
   zone.addEventListener("click", () => input.click());
+  zone.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); input.click(); }
+  });
   input.addEventListener("change", () => { if (input.files) { addFiles(multiple ? [...input.files] : [input.files[0]]); input.value = ""; } });
   zone.addEventListener("dragover", (e) => { e.preventDefault(); zone.classList.add("drag"); });
   zone.addEventListener("dragleave", () => zone.classList.remove("drag"));

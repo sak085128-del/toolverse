@@ -120,8 +120,8 @@ const pdf1: Record<string, ToolImpl> = {
             for (let i = 0; i < doc.numPages; i++) {
               node(root, "st").textContent = `Rasterizing page ${i + 1}/${doc.numPages}…`;
               const canvas = await renderPage(doc, i, scale);
-              const blob = await canvasToBlob(canvas, "image/png");
-              const img = await out.embedPng(await blob.arrayBuffer());
+              const blob = await canvasToBlob(canvas, "image/jpeg", Math.max(0.2, Math.min(1, q)));
+              const img = await out.embedJpg(await blob.arrayBuffer());
               const { w, h } = await pageBox(doc, i);
               const page = out.addPage([w, h]);
               page.drawImage(img, { x: 0, y: 0, width: w, height: h });

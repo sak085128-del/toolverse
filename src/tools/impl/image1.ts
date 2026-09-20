@@ -44,7 +44,7 @@ const image1: Record<string, ToolImpl> = {
       sliderField("q", "Quality (lossy only)", 10, 100, 90, "%") +
       btnRow(btn("Convert & download", "go", true)) +
       results(result("Original", `<b data-o="orig">—</b>`), result("Converted", `<b data-o="new">—</b>`)) +
-      `<div class="preview"><canvas data-prev hidden></canvas></div>` + statusBox("st") + privacyNote(),
+      statusBox("st") + privacyNote(),
     init: (root) => {
       let file: File | null = null;
       wireDropzone(root, (files) => {
@@ -111,17 +111,26 @@ const image1: Record<string, ToolImpl> = {
         node(root, "st").textContent = "Resizing…";
         try {
           const canvas = await imageFileToCanvas(file, 8192);
-          const w = parseInt(node<HTMLInputElement>(root, "w").value, 10);
-          const h = parseInt(node<HTMLInputElement>(root, "h").value, 10);
+          const w = Math.max(1, parseInt(node<HTMLInputElement>(root, "w").value, 10) || 1);
+          const h = Math.max(1, parseInt(node<HTMLInputElement>(root, "h").value, 10) || 1);
           const lock = (root.querySelector("[data-node='lock']") as HTMLInputElement).checked;
-          let nw = Math.max(1, w) || 1;
-          let nh = Math.max(1, h) || 1;
-          if (lock) nh = Math.max(1, Math.round(nw / (canvas.width / canvas.height)));
+          const best = (root.querySelector("[data-node='best']") as HTMLInputElement).checked;
           const enlarge = (root.querySelector("[data-node='enlarge']") as HTMLInputElement).checked;
-          if (!enlarge) {
-            const maxW = canvas.width, maxH = canvas.height;
-            const sc = Math.min(1, maxW / nw, maxH / nh);
-            if (sc < 1) { nw = Math.round(nw * sc); nh = Math.round(nh * sc); }
+          const ar = canvas.width / canvas.height;
+          let nw: number, nh: number;
+          if (best) {
+            let sc = Math.min(w / canvas.width, h / canvas.height);
+            if (!enlarge) sc = Math.min(sc, 1);
+            nw = Math.max(1, Math.round(canvas.width * sc));
+            nh = Math.max(1, Math.round(canvas.height * sc));
+          } else {
+            nw = w;
+            nh = lock ? Math.max(1, Math.round(nw / ar)) : h;
+            if (!enlarge) {
+              const sc = Math.min(1, canvas.width / nw, canvas.height / nh);
+              nw = Math.max(1, Math.round(nw * sc));
+              nh = Math.max(1, Math.round(nh * sc));
+            }
           }
           const out = document.createElement("canvas");
           out.width = nw; out.height = nh;

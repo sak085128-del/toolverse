@@ -3,7 +3,7 @@
   "private": true,
   "version": "3.0.0",
   "type": "module",
-  "description": "ToolVerse — 78 free online tools that just work.",
+  "description": "ToolVerse — 76 free online tools that just work.",
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build && node scripts/generate.mjs",

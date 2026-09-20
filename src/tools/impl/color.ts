@@ -84,7 +84,9 @@ const colorTools: Record<string, ToolImpl> = {
         const b = hexToRgb(node<HTMLInputElement>(root, "b").value);
         const t = parseInt(node<HTMLInputElement>(root, "m").value) / 100;
         if (!a || !b) return;
-        const bl = a.map((v, i) => Math.round(v + (b[i] - v) * t)) as [number, number, number];
+        const s2l = (v: number) => { v /= 255; return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); };
+        const l2s = (v: number) => { const c = v <= 0.0031308 ? v * 12.92 : 1.055 * Math.pow(v, 1 / 2.4) - 0.055; return Math.round(Math.max(0, Math.min(1, c)) * 255); };
+        const bl = a.map((v, i) => l2s(s2l(v) + (s2l(b[i]) - s2l(v)) * t)) as [number, number, number];
         const dark = a.map((v) => Math.round(v * 0.6)) as [number, number, number];
         const light = a.map((v) => Math.round(v + (255 - v) * 0.6)) as [number, number, number];
         const out = rgbToHex(bl[0], bl[1], bl[2]);
@@ -114,9 +116,9 @@ const colorTools: Record<string, ToolImpl> = {
         const p = root.querySelector<HTMLElement>("[data-prev]");
         if (p) { p.style.background = node<HTMLInputElement>(root, "bg").value; p.style.color = node<HTMLInputElement>(root, "fg").value; }
         const ok = ratio >= 4.5, okAa = ratio >= 3, okAaa = ratio >= 7;
-        setOk(root, "aa", ok, ratio);
-        setOk(root, "aal", okAa, ratio);
-        setOk(root, "aaa", okAaa, ratio);
+        setOk(root, "aa", ok);
+        setOk(root, "aal", okAa);
+        setOk(root, "aaa", okAaa);
         node(root, "ratio").textContent = ratio.toFixed(2) + ":1";
       };
       root.querySelectorAll<HTMLInputElement>("[data-node='fg'],[data-node='bg']").forEach((i) => i.addEventListener("input", calc));
@@ -150,8 +152,8 @@ const colorTools: Record<string, ToolImpl> = {
 
 export default colorTools;
 
-function setOk(root: HTMLElement, id: string, ok: boolean, ratio: number): void {
+function setOk(root: HTMLElement, id: string, ok: boolean): void {
   const el = node<HTMLElement>(root, id);
-  el.textContent = ok ? `Pass${ratio.toFixed(2) === "4.50" ? "" : " ✓"}` : "Fail ✗";
+  el.textContent = ok ? "Pass ✓" : "Fail ✗";
   el.style.color = ok ? "#22c55e" : "#dc2626";
 }

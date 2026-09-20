@@ -47,532 +47,1296 @@
       "title": "Image Compressor",
       "category": "image",
       "desc": "Compress JPG, PNG and WebP images in your browser with adjustable quality. Nothing is uploaded.",
-      "intro": "Perfect for saving storage or speeding up web pages - you can compare the compressed result against the original before downloading."
+      "intro": "Perfect for saving storage or speeding up web pages - you can compare the compressed result against the original before downloading.",
+      "faq": [
+        {
+          "q": "Will my image be uploaded?",
+          "a": "No. The file is read with the browser's canvas API and processed entirely on your device — nothing is sent to any server."
+        },
+        {
+          "q": "Why is my PNG sometimes bigger than the original?",
+          "a": "PNG is a lossless format, so re-encoding a JPEG-style photo as PNG can increase the size. For photos, use JPEG or WebP output to actually save space."
+        }
+      ]
     },
     {
       "slug": "image-converter",
       "title": "Image Converter",
       "category": "image",
-      "desc": "Convert images between PNG, JPG, WEBP, BMP and GIF with no uploads and no size limits.",
-      "intro": "Batch-friendly and instant: pick your target format, tweak quality where available, then export directly from the browser."
+      "desc": "Convert images between PNG, JPG, WEBP, BMP and GIF with no uploads.",
+      "intro": "Batch-friendly and instant: pick your target format, tweak quality where available, then export directly from the browser.",
+      "faq": [
+        {
+          "q": "Which formats can I convert between?",
+          "a": "PNG, JPG, WEBP and BMP. Converting to JPEG or BMP flattens transparency onto a white background; PNG and WEBP preserve it."
+        },
+        {
+          "q": "Is there a file size limit?",
+          "a": "No hard limit, but very large images are scaled down to at most 4000px on the longest side to keep your browser responsive."
+        }
+      ]
     },
     {
       "slug": "image-resizer",
       "title": "Image Resizer",
       "category": "image",
       "desc": "Resize a picture to any width or height, keep or override the aspect ratio, and download instantly.",
-      "intro": "Great for social media images, thumbnails and website assets where exact pixel dimensions matter."
+      "intro": "Great for social media images, thumbnails and website assets where exact pixel dimensions matter.",
+      "faq": [
+        {
+          "q": "Will resizing enlarge my image?",
+          "a": "No, by default. Turn on \"Allow upscaling\" if you want to grow an image beyond its original dimensions."
+        },
+        {
+          "q": "Why does the “Fit inside” option keep my aspect ratio?",
+          "a": "Fit inside scales the image to fit the box you entered without cropping, so the longest side touches the box and the aspect ratio is always preserved."
+        },
+        {
+          "q": "What format is the download?",
+          "a": "PNG, so you always get a lossless result at the exact pixel dimensions you chose."
+        }
+      ]
     },
     {
       "slug": "image-cropper",
       "title": "Image Cropper",
       "category": "image",
       "desc": "Crop any image to a free selection or fixed ratios like 1:1, 16:9 and 4:3, entirely in your browser.",
-      "intro": "Useful for profile pictures, banner art and print layouts that need precise aspect ratios."
+      "intro": "Useful for profile pictures, banner art and print layouts that need precise aspect ratios.",
+      "faq": [
+        {
+          "q": "Can I crop to a specific aspect ratio?",
+          "a": "Yes — choose 1:1, 4:3, 16:9, 3:2, 21:9, 2:3 or 9:16, or set it to Free for any shape."
+        },
+        {
+          "q": "Is my image uploaded anywhere?",
+          "a": "No. Cropping happens entirely in your browser and the download is produced locally."
+        }
+      ]
     },
     {
       "slug": "image-editor",
       "title": "Image Editor",
       "category": "image",
       "desc": "Adjust brightness, contrast, saturation, blur and rotation. Flip, tint or add a watermark. All local.",
-      "intro": "A lightweight photo retoucher that handles everyday edits without any installs or accounts."
+      "intro": "A lightweight photo retoucher that handles everyday edits without any installs or accounts.",
+      "faq": [
+        {
+          "q": "How do I undo my edits?",
+          "a": "Use the Reset button to restore the original image. Edits preview live as you move the sliders, so you can dial them back at any time."
+        },
+        {
+          "q": "Are my adjustments destructive?",
+          "a": "No. Nothing changes until you download, and the original file on your device is never modified."
+        }
+      ]
     },
     {
       "slug": "memes",
       "title": "Meme Generator",
       "category": "image",
       "desc": "Add top and bottom captions to your own image in classic meme style with adjustable styling.",
-      "intro": "Make funny memes in seconds - your image and captions are rendered locally, so nothing is stored."
+      "intro": "Make funny memes in seconds - your image and captions are rendered locally, so nothing is stored.",
+      "faq": [
+        {
+          "q": "Where does my meme go?",
+          "a": "It is rendered in your browser and saved as a PNG. It is never uploaded to or stored on any server."
+        },
+        {
+          "q": "Can I use more than two lines of text?",
+          "a": "Top and bottom captions are supported, and long text wraps automatically to up to three lines per caption."
+        }
+      ]
     },
     {
       "slug": "image-diff",
       "title": "Image Diff Checker",
       "category": "image",
       "desc": "Find visual differences between two images with side-by-side, overlay or pixel-diff views.",
-      "intro": "Handy for designers and developers comparing design mockups, screenshots or regression tests."
+      "intro": "Handy for designers and developers comparing design mockups, screenshots or regression tests.",
+      "faq": [
+        {
+          "q": "Do both images need to be the same size?",
+          "a": "They are scaled for an easy side-by-side comparison. The pixel-diff view compares them at their natural resolution, so identical dimensions give the most exact result."
+        },
+        {
+          "q": "What does the red overlay mean?",
+          "a": "In the \"Differences\" view, pixels that differ beyond a small tolerance are highlighted in red so you can spot the changes instantly."
+        }
+      ]
     },
     {
       "slug": "animated-gif-maker",
       "title": "Animated GIF Maker",
       "category": "image",
-      "desc": "Turn several images or a short video into a looping animated GIF with frame delay control.",
-      "intro": "Convert video clips or image sequences into shareable GIFs right on your device."
+      "desc": "Turn several images into a looping animated GIF with frame delay control, right in your browser.",
+      "intro": "Combine an image sequence into a shareable GIF on your own device - no uploads needed.",
+      "faq": [
+        {
+          "q": "How is the frame order decided?",
+          "a": "Frames use the order in which you add images. Remove a file and add it again to move it to the end."
+        },
+        {
+          "q": "Why does my GIF look blocky?",
+          "a": "GIF supports only 256 colors per frame and the tool uses a fixed 480px width to keep files small. Use fewer, shorter frames for a smoother result."
+        }
+      ]
     },
     {
       "slug": "webp-converter",
       "title": "WEBP Converter",
       "category": "image",
       "desc": "Convert WEBP files to PNG or JPG, or encode other formats into WEBP with quality control.",
-      "intro": "Modern small-format images made easy, whether you are optimising a website or working with mixed file types."
+      "intro": "Modern small-format images made easy, whether you are optimising a website or working with mixed file types.",
+      "faq": [
+        {
+          "q": "Can I convert multiple files at once?",
+          "a": "Yes — drop several images and each is converted to WEBP one after another and downloaded automatically."
+        },
+        {
+          "q": "Which formats can I convert to WEBP?",
+          "a": "Any format your browser can decode, including PNG, JPG, GIF and BMP."
+        }
+      ]
     },
     {
       "slug": "pdf-merge",
       "title": "PDF Merger",
       "category": "pdf",
       "desc": "Combine multiple PDF files into one document in the order you choose, in your browser.",
-      "intro": "Put receipts, scans or chapters into a single document without uploading anything."
+      "intro": "Put receipts, scans or chapters into a single document without uploading anything.",
+      "faq": [
+        {
+          "q": "How is the page order decided?",
+          "a": "The merged PDF follows the order the files were added. Remove a file, then add it again, to move it later in the list."
+        },
+        {
+          "q": "Can I merge scanning-style image PDFs?",
+          "a": "Yes. Pages are copied directly, so existing text and embedded images are preserved as-is."
+        }
+      ]
     },
     {
       "slug": "pdf-split",
       "title": "PDF Splitter",
       "category": "pdf",
       "desc": "Split a PDF into single pages or extract a page range, and download pages individually or as a new PDF.",
-      "intro": "Extract only the pages you need and leave the rest - useful for sharing part of a document."
+      "intro": "Extract only the pages you need and leave the rest - useful for sharing part of a document.",
+      "faq": [
+        {
+          "q": "How do I write page ranges?",
+          "a": "Use comma-separated groups such as 1-3, 5, 8-10. Leave the field empty to split the PDF into single-page files."
+        },
+        {
+          "q": "What do I download?",
+          "a": "A ZIP archive with one PDF per group, named part-1, part-2, and so on."
+        }
+      ]
     },
     {
       "slug": "pdf-compress",
       "title": "PDF Compressor",
       "category": "pdf",
       "desc": "Reduce PDF file size by recompressing images with selectable quality. Files never leave your device.",
-      "intro": "Shrink PDFs before emailing or uploading them, with visible size savings computed as you adjust quality."
+      "intro": "Shrink PDFs before emailing or uploading them, with visible size savings computed as you adjust quality.",
+      "faq": [
+        {
+          "q": "Why did my PDF get bigger?",
+          "a": "If the source is already well compressed, re-encoding can add overhead. Lower the quality slider, or compare with the original before keeping the result."
+        },
+        {
+          "q": "Does \"Rasterize pages\" remove the text?",
+          "a": "Yes. Rasterizing turns each page into an image, so text stops being selectable — but it usually produces much smaller files."
+        }
+      ]
     },
     {
       "slug": "pdf-to-images",
       "title": "PDF to Images",
       "category": "pdf",
       "desc": "Render each page of a PDF document as a high-quality PNG or JPG image. Runs fully offline.",
-      "intro": "Create image snapshots of any page for previews, screenshots or slides without needing a PDF reader."
+      "intro": "Create image snapshots of any page for previews, screenshots or slides without needing a PDF reader.",
+      "faq": [
+        {
+          "q": "What resolution will the images be?",
+          "a": "The scale slider (0.5x to 3x) sets resolution relative to each page's native size; 1.6x is a good default for screen use."
+        },
+        {
+          "q": "Which formats can I export?",
+          "a": "PNG, JPG and WEBP. Every page is delivered in one ZIP file."
+        }
+      ]
     },
     {
       "slug": "text-to-pdf",
       "title": "Text to PDF",
       "category": "pdf",
-      "desc": "Turn plain text or Markdown into a clean, downloadable PDF with font and size options.",
-      "intro": "Format reports, notes or READMEs into a clean document you can download and share."
+      "desc": "Turn plain text into a clean, downloadable PDF with font and size options.",
+      "intro": "Format reports, notes or READMEs into a clean document you can download and share.",
+      "faq": [
+        {
+          "q": "Can I format my text?",
+          "a": "It is plain text with paragraphs detected from blank lines, and the first line of each paragraph is rendered in bold as an implicit heading. No Markdown or special markup is applied."
+        },
+        {
+          "q": "Which page sizes are available?",
+          "a": "A4, Letter and A5, with adjustable font size and margins."
+        }
+      ]
     },
     {
       "slug": "images-to-pdf",
       "title": "Images to PDF",
       "category": "pdf",
-      "desc": "Combine multiple images (JPG, PNG, WEBP) into a single PDF file with page-size control.",
-      "intro": "Package a photo batch or scanned pages into one PDF with a page size you choose."
+      "desc": "Combine multiple images (JPG, PNG, WEBP) into a single PDF — one image per page — entirely in your browser.",
+      "intro": "Package a photo batch or scanned pages into one PDF with a page size you choose.",
+      "faq": [
+        {
+          "q": "Which image formats work?",
+          "a": "JPG and PNG embed directly. The tool will tell you if a file, such as WEBP, needs converting first."
+        },
+        {
+          "q": "How is every image placed?",
+          "a": "Each image becomes its own page and is scaled to fit centered on an A4 page."
+        }
+      ]
     },
     {
       "slug": "zip-compressor",
       "title": "ZIP Compressor",
       "category": "pdf",
-      "desc": "Create ZIP archives from multiple files or extract ZIP files - right in the browser.",
-      "intro": "Bundle and compress files, or unpack existing archives - all processed locally."
+      "desc": "Create ZIP archives from multiple files with adjustable compression - right in the browser.",
+      "intro": "Bundle files into a single archive to share or store - everything happens locally.",
+      "faq": [
+        {
+          "q": "Which compression levels are available?",
+          "a": "Store (no compression), Default and Maximum. Maximum produces the smallest archive but takes longer."
+        },
+        {
+          "q": "Is anything uploaded?",
+          "a": "No — the archive is built in your browser and downloaded straight to your device."
+        }
+      ]
     },
     {
       "slug": "file-hash-checker",
       "title": "File Hash Checker",
       "category": "pdf",
       "desc": "Verify MD5, SHA-1 and SHA-256 checksums of any file locally, before trusting a download.",
-      "intro": "Confirm a download is intact and untampered before you trust it."
+      "intro": "Confirm a download is intact and untampered before you trust it.",
+      "faq": [
+        {
+          "q": "Which hash algorithms are supported?",
+          "a": "MD5, SHA-1 and SHA-256."
+        },
+        {
+          "q": "How do I verify a checksum?",
+          "a": "Paste the expected hash into the compare field and the tool reports whether it matches any of the computed values."
+        }
+      ]
     },
     {
       "slug": "file-metadata",
       "title": "File Metadata Reader",
       "category": "pdf",
       "desc": "Inspect file names, sizes, MIME types and dates without uploading anything.",
-      "intro": "See what a file actually is - good for spotting wrong extensions or validating exports."
+      "intro": "See what a file actually is - good for spotting wrong extensions or validating exports.",
+      "faq": [
+        {
+          "q": "What information can I see?",
+          "a": "File name, size in bytes, MIME type, last-modified date, a SHA-256 fingerprint and the directory path when a folder is dropped."
+        },
+        {
+          "q": "Is the file uploaded?",
+          "a": "No. Metadata is read locally from the file object in your browser."
+        }
+      ]
     },
     {
       "slug": "case-converter",
       "title": "Case Converter",
       "category": "text",
       "desc": "Convert text to UPPER, lower, Title Case, camelCase, kebab-case and more with live preview.",
-      "intro": "Instant text casing for headlines, code identifiers and social posts."
+      "intro": "Instant text casing for headlines, code identifiers and social posts.",
+      "faq": [
+        {
+          "q": "Can I fix text I've already typed?",
+          "a": "Paste your text, pick a case, and the converted result appears in the output box ready to copy or send back to the input."
+        },
+        {
+          "q": "Does sentence case handle the whole block?",
+          "a": "Yes — it lowercases the text and capitalizes the first letter after each sentence-ending punctuation mark."
+        }
+      ]
     },
     {
       "slug": "word-counter",
       "title": "Word & Character Counter",
       "category": "text",
       "desc": "Count words, characters, sentences, paragraphs and reading time as you type or paste.",
-      "intro": "Great for essays, tweets, meta descriptions and anywhere a word limit applies."
+      "intro": "Great for essays, tweets, meta descriptions and anywhere a word limit applies.",
+      "faq": [
+        {
+          "q": "Do the stats update as I type?",
+          "a": "Yes — characters, words, sentences and paragraphs are counted live on every keystroke."
+        },
+        {
+          "q": "Does it count emoji?",
+          "a": "Emoji count as characters, and as words when separated by spaces — the word count uses whitespace-separated tokens."
+        }
+      ]
     },
     {
       "slug": "text-to-speech",
       "title": "Text to Speech",
       "category": "text",
       "desc": "Listen to any text spoken aloud with your browser speech engine, with rate and pitch controls.",
-      "intro": "Turn articles, notes or drafts into audio you can listen to hands-free."
+      "intro": "Turn articles, notes or drafts into audio you can listen to hands-free.",
+      "faq": [
+        {
+          "q": "Does this work offline?",
+          "a": "It uses your browser's built-in speech engine, so no network request or server is involved. Voice availability depends on your operating system."
+        },
+        {
+          "q": "Can I change the speed?",
+          "a": "Yes — rate and pitch are adjusted with sliders. The voice is your browser's default; which voices are available depends on your operating system and browser."
+        }
+      ]
     },
     {
       "slug": "reverse-text",
       "title": "Reverse Text",
       "category": "text",
       "desc": "Reverse text, words, or lines and generate upside-down (flipped) Unicode characters.",
-      "intro": "Fun for puzzles, backwards messages and flipped Unicode for social bio tricks."
+      "intro": "Fun for puzzles, backwards messages and flipped Unicode for social bio tricks.",
+      "faq": [
+        {
+          "q": "How does upside-down text work?",
+          "a": "Each letter is mapped to its Unicode rotated counterpart, which renders on modern phones and desktops."
+        },
+        {
+          "q": "Can I reverse whole words or lines?",
+          "a": "Yes — options cover character reversal, word order and line order, plus upside-down text built from Unicode flipped characters."
+        }
+      ]
     },
     {
       "slug": "remove-duplicate-lines",
       "title": "Remove Duplicate Lines",
       "category": "text",
       "desc": "Deduplicate lines and sort them alphabetically or by length - instantly, offline.",
-      "intro": "Clean up copied lists, CSV exports and config files in one click."
+      "intro": "Clean up copied lists, CSV exports and config files in one click.",
+      "faq": [
+        {
+          "q": "Does removing duplicates keep my order?",
+          "a": "Yes. The first occurrence of each line is kept in its original position unless you enable sorting."
+        },
+        {
+          "q": "What if duplicate-checking should ignore spaces?",
+          "a": "The default case-insensitive mode trims and lower-cases each line before comparing. Turn that off to compare lines exactly as they are."
+        }
+      ]
     },
     {
       "slug": "text-cleaner",
       "title": "Text Cleaner",
       "category": "text",
       "desc": "Trim whitespace, collapse blank lines, replace smart quotes and clean up copied text.",
-      "intro": "Fix the messy leftovers of copy-pasting from emails, word processors and websites."
+      "intro": "Fix the messy leftovers of copy-pasting from emails, word processors and websites.",
+      "faq": [
+        {
+          "q": "What exactly is cleaned?",
+          "a": "Curly quotes are straightened, non-breaking spaces become regular spaces, lines are trimmed, blank lines are removed, and double spaces can be collapsed — each one is an on/off option."
+        },
+        {
+          "q": "Can I paste from Word?",
+          "a": "Yes — straightening smart quotes and normalizing whitespace is exactly what Word-paste text needs."
+        }
+      ]
     },
     {
       "slug": "lorem-generator",
       "title": "Lorem Ipsum Generator",
       "category": "text",
       "desc": "Generate lorem ipsum or real-word filler in paragraphs, sentences or words.",
-      "intro": "Quick filler text for mockups, design comps and placeholder content."
+      "intro": "Quick filler text for mockups, design comps and placeholder content.",
+      "faq": [
+        {
+          "q": "Can I choose the amount of text?",
+          "a": "Yes — set the number of paragraphs and the words per paragraph, choose lorem ipsum or random fillers, and switch the output between plain text and HTML paragraphs."
+        },
+        {
+          "q": "How do I get the result?",
+          "a": "Copy it to the clipboard or download it as a UTF-8 .txt file."
+        }
+      ]
     },
     {
       "slug": "markdown-editor",
       "title": "Markdown Editor",
       "category": "text",
       "desc": "Write Markdown with a live rendered preview, then export the HTML output.",
-      "intro": "Draft docs or blog posts with a live preview and copy the finished HTML."
+      "intro": "Draft docs or blog posts with a live preview and copy the finished HTML.",
+      "faq": [
+        {
+          "q": "Can I export my Markdown?",
+          "a": "Yes — download the preview as an HTML file or copy the rendered HTML."
+        },
+        {
+          "q": "Are links safe to click?",
+          "a": "Only http://, https:// and mailto: links are made clickable and opened in a new tab; anything else is rendered as plain text for your safety."
+        }
+      ]
     },
     {
       "slug": "slug-url-generator",
       "title": "Slug URL Generator",
       "category": "text",
       "desc": "Turn any title or phrase into a clean, SEO-friendly URL slug.",
-      "intro": "Create clean, consistent URL slugs for CMS posts, routes and anchors."
+      "intro": "Create clean, consistent URL slugs for CMS posts, routes and anchors.",
+      "faq": [
+        {
+          "q": "Which characters are removed?",
+          "a": "Accents are normalized to ASCII, then everything outside a-z, 0-9 and dashes is dropped (dashes collapse and trim)."
+        },
+        {
+          "q": "Can I keep short filler words?",
+          "a": "Toggle the \"Remove short words\" option to drop common stop-words (such as a, an, the) from the result."
+        }
+      ]
     },
     {
       "slug": "ascii-art-generator",
       "title": "ASCII Art Generator",
       "category": "text",
-      "desc": "Convert text into block-letter ASCII art, or convert images into character art.",
-      "intro": "Make standout terminal headers, code comments and retro art."
+      "desc": "Convert an image into character art and copy the result as plain text.",
+      "intro": "Make standout terminal headers, code comments and retro art.",
+      "faq": [
+        {
+          "q": "Which image formats work?",
+          "a": "Any image your browser can decode — PNG, JPG, WEBP, GIF and BMP."
+        },
+        {
+          "q": "Can I change the output width?",
+          "a": "Yes — the character width is adjustable (roughly 20–220 characters), and you can switch between three character sets for more or less detail."
+        }
+      ]
     },
     {
       "slug": "rich-text-cleaner",
       "title": "Rich Text Cleaner",
       "category": "text",
       "desc": "Paste messy content from Word or web pages and get clean, formatted plain text.",
-      "intro": "Paste content that has formatting you do not want and get tidy plain text."
+      "intro": "Paste content that has formatting you do not want and get tidy plain text.",
+      "faq": [
+        {
+          "q": "What is removed from the pasted text?",
+          "a": "Formatting such as bold, italics, colors and fonts. Link text is kept so the readable words survive; the destination URLs are dropped."
+        },
+        {
+          "q": "When is this useful?",
+          "a": "Pasting styled text into a plain-text form, an email, or a database field without inheriting invisible markup."
+        }
+      ]
     },
     {
       "slug": "json-formatter",
       "title": "JSON Formatter & Validator",
       "category": "developer",
       "desc": "Format, minify and validate JSON with syntax highlighting and CSV export.",
-      "intro": "Debug APIs and configs faster with readable output, validation and CSV export."
+      "intro": "Debug APIs and configs faster with readable output, validation and CSV export.",
+      "faq": [
+        {
+          "q": "Does the formatter validate my JSON?",
+          "a": "Yes — invalid JSON is never silently reformatted. The Validate button reports the exact parse error with a line and column pointer."
+        },
+        {
+          "q": "Can I convert JSON to CSV?",
+          "a": "Yes, when the JSON is an array of flat objects the tool offers a CSV export with a header row."
+        }
+      ]
     },
     {
       "slug": "json-vs-yaml",
       "title": "JSON to YAML Converter",
       "category": "developer",
       "desc": "Convert between JSON and YAML in both directions with validation.",
-      "intro": "Translate configs between JSON and YAML without installing a converter."
+      "intro": "Translate configs between JSON and YAML without installing a converter.",
+      "faq": [
+        {
+          "q": "Which YAML features are supported?",
+          "a": "Mappings, sequences, scalars and basic nesting — including inline flow arrays. Advanced features such as anchors and multi-document streams are not implemented."
+        },
+        {
+          "q": "Is the conversion loss-less?",
+          "a": "For supported YAML, yes. Numbers and booleans are passed through as their JSON types where safe."
+        }
+      ]
     },
     {
       "slug": "html-minifier",
       "title": "HTML Minifier",
       "category": "developer",
       "desc": "Minify or pretty-print HTML, preserving script and style contents.",
-      "intro": "Ship smaller HTML files while keeping scripts and styles intact."
+      "intro": "Ship smaller HTML files while keeping scripts and styles intact.",
+      "faq": [
+        {
+          "q": "Is it safe with my scripts and styles?",
+          "a": "It is conservative: comments are stripped and whitespace between tags collapses, while <script> and <style> content is only re-spaced. For the smallest output, minify those with dedicated minifiers first."
+        },
+        {
+          "q": "What is trimmed?",
+          "a": "Comments, blank lines, leading indentation, and the whitespace around attributes and tags."
+        }
+      ]
     },
     {
       "slug": "css-minifier",
       "title": "CSS Minifier",
       "category": "developer",
       "desc": "Strip comments and whitespace from CSS to shrink stylesheets for production.",
-      "intro": "Trim the fat from stylesheets for faster page loads."
+      "intro": "Trim the fat from stylesheets for faster page loads.",
+      "faq": [
+        {
+          "q": "What does the minifier remove?",
+          "a": "Comments, unnecessary whitespace, optional trailing semicolons and final-rule semicolons."
+        },
+        {
+          "q": "Can I shorten property values?",
+          "a": "No — values such as hex colors and zero units are kept exactly as you wrote them. The minifier only removes comments and unnecessary whitespace."
+        }
+      ]
     },
     {
       "slug": "js-minifier",
       "title": "JS Minifier",
       "category": "developer",
       "desc": "String-aware JavaScript whitespace and comment removal. Safe for most scripts.",
-      "intro": "Reduce script size for production without mangling strings or string-adjacent comments."
+      "intro": "Reduce script size for production without mangling strings or string-adjacent comments.",
+      "faq": [
+        {
+          "q": "Is this a full minifier?",
+          "a": "No — it is a lightweight strip of comments and whitespace that keeps string and template literals intact. Regex literals and other exotic syntax are not rewritten, so use a dedicated minifier such as Terser for aggressive size reduction."
+        },
+        {
+          "q": "Will my code still work?",
+          "a": "Yes — only removable tokens are deleted; nothing else is rewritten."
+        }
+      ]
     },
     {
       "slug": "sql-formatter",
       "title": "SQL Formatter",
       "category": "developer",
       "desc": "Format SQL queries with keyword capitalisation and indentation for readability.",
-      "intro": "Make long queries readable for debugging and code review."
+      "intro": "Make long queries readable for debugging and code review.",
+      "faq": [
+        {
+          "q": "Which SQL does it support?",
+          "a": "It is dialect-agnostic and capitalizes common keywords from MySQL, PostgreSQL, SQLite and others, indenting subqueries in parentheses. It reformats — it does not validate your SQL."
+        },
+        {
+          "q": "Can I control keyword casing?",
+          "a": "Known keywords are capitalized automatically. The “Uppercase keywords” button re-runs formatting on an uppercase copy of the statement, which also uppercases quoted strings."
+        }
+      ]
     },
     {
       "slug": "url-encoder",
       "title": "URL Encoder / Decoder",
       "category": "developer",
       "desc": "Percent-encode or decode URLs and query strings with strictness options.",
-      "intro": "Encode user input safely for links, query strings and API parameters."
+      "intro": "Encode user input safely for links, query strings and API parameters.",
+      "faq": [
+        {
+          "q": "Which encoding modes are available?",
+          "a": "URLComponent (encodes the most, safe for query values), URL (keeps reserved characters like / and ?) and Form-style (+ for spaces), plus percent-decoding."
+        },
+        {
+          "q": "Why do some characters stay unchanged?",
+          "a": "Reserved and unescaped characters such as letters, digits, -_.~ are intentionally not encoded."
+        }
+      ]
     },
     {
       "slug": "url-parser",
       "title": "URL Parser",
       "category": "developer",
       "desc": "Break any URL into protocol, host, port, path, query params and fragment.",
-      "intro": "Understand exactly what a URL does - useful when debugging links or writing scrapers."
+      "intro": "Understand exactly what a URL does - useful when debugging links or writing scrapers.",
+      "faq": [
+        {
+          "q": "What details are extracted?",
+          "a": "Protocol, host, port, path, query parameters and the hash fragment — each in its own field plus a decoded-key view."
+        },
+        {
+          "q": "Do I need to include https://?",
+          "a": "Yes — add the protocol (e.g. https://example.com) so the host and path can be split correctly."
+        }
+      ]
     },
     {
       "slug": "base64-encoder",
       "title": "Base64 Encoder / Decoder",
       "category": "developer",
-      "desc": "Encode text or files to Base64, or decode Base64 back to text or a file.",
-      "intro": "Encode binaries or text for API payloads, data URIs and email attachments."
+      "desc": "Encode or decode text to and from Base64 right in your browser.",
+      "intro": "Convert text to Base64 for API payloads, data URIs and email attachments.",
+      "faq": [
+        {
+          "q": "Does it handle Unicode and emoji?",
+          "a": "Yes — text is encoded as UTF-8 first, so characters like é and emoji are preserved after encoding."
+        },
+        {
+          "q": "Which direction does it go?",
+          "a": "Both — encode text to Base64 or decode Base64 back into readable text. Long strings are chunked for reliability."
+        }
+      ]
     },
     {
       "slug": "jwt-decoder",
       "title": "JWT Decoder",
       "category": "developer",
       "desc": "Decode the header and payload of a JWT token locally and inspect its claims.",
-      "intro": "Inspect token claims and expiration without pasting secrets into a third-party site."
+      "intro": "Inspect token claims and expiration without pasting secrets into a third-party site.",
+      "faq": [
+        {
+          "q": "Does this tool verify the signature?",
+          "a": "No — it only decodes the header and payload for inspection. Verification must be done with the issuer's secret or public key."
+        },
+        {
+          "q": "Can I paste tokens containing dots?",
+          "a": "Yes, paste the full token (header.payload.signature) and the three parts are decoded separately."
+        }
+      ]
     },
     {
       "slug": "html-entity-encoder",
       "title": "HTML Entity Encoder",
       "category": "developer",
       "desc": "Escape or unescape HTML entities to keep dynamic content safe in markup.",
-      "intro": "Safely escape dynamic content before inserting it into markup."
+      "intro": "Safely escape dynamic content before inserting it into markup.",
+      "faq": [
+        {
+          "q": "Which characters are encoded?",
+          "a": "The five required entities: & (amp), < (lt), > (gt), “ (quot) and ‘ (apos)."
+        },
+        {
+          "q": "Can I encode or decode in both directions?",
+          "a": "Yes — toggle between encode and decode and run either way."
+        }
+      ]
     },
     {
       "slug": "regex-tester",
       "title": "Regex Tester",
       "category": "developer",
       "desc": "Test regular expressions against sample text with flags, matches and groups.",
-      "intro": "Iterate on patterns with live matches, groups and flags."
+      "intro": "Iterate on patterns with live matches, groups and flags.",
+      "faq": [
+        {
+          "q": "Which flags are supported?",
+          "a": "All JavaScript flags: g, i, m, s, u and y."
+        },
+        {
+          "q": "Can I see the capture groups?",
+          "a": "Yes — the match log lists each match with its position and every capture group it contains."
+        }
+      ]
     },
     {
       "slug": "uuid-generator",
       "title": "UUID Generator",
       "category": "developer",
       "desc": "Generate v4 and v7 UUIDs in bulk, with uppercase and batch options.",
-      "intro": "Generate unique IDs for databases, test fixtures and tracking codes."
+      "intro": "Generate unique IDs for databases, test fixtures and tracking codes.",
+      "faq": [
+        {
+          "q": "Which UUID versions are available?",
+          "a": "UUID v4 (fully random) and UUID v7 (time-ordered), which sorts naturally by creation time."
+        },
+        {
+          "q": "How many can I generate at once?",
+          "a": "Enter a count from 1 to 100; the batch is copied as one block, or you can copy just the first one."
+        }
+      ]
     },
     {
       "slug": "password-generator",
       "title": "Password Generator",
       "category": "developer",
       "desc": "Create strong random passwords and memorable passphrases with full control.",
-      "intro": "Create strong, diverse credentials plus easy-to-remember passphrases."
+      "intro": "Create strong, diverse credentials plus easy-to-remember passphrases.",
+      "faq": [
+        {
+          "q": "Are the passwords cryptographically strong?",
+          "a": "Yes — they are generated with the browser's crypto.getRandomValues, which is the same source used by security software."
+        },
+        {
+          "q": "What can I customize?",
+          "a": "Length, the character sets included (lowercase, uppercase, numbers, symbols) and an option to exclude lookalike characters such as 1, l, I, O and 0."
+        }
+      ]
     },
     {
       "slug": "crypto-hash",
       "title": "Hash Generator",
       "category": "developer",
       "desc": "Compute MD5, SHA-1, SHA-256 and SHA-512 hashes of text or files in-browser.",
-      "intro": "Verify or fingerprint strings and files with common hash algorithms."
+      "intro": "Verify or fingerprint strings and files with common hash algorithms.",
+      "faq": [
+        {
+          "q": "Which algorithms are supported?",
+          "a": "MD5, SHA-1, SHA-256 and SHA-512, computed with the browser's native WebCrypto API."
+        },
+        {
+          "q": "Does hashing work offline?",
+          "a": "Yes — the digest is calculated entirely in your browser, which also means the content never leaves your device."
+        }
+      ]
     },
     {
       "slug": "qr-code-generator",
       "title": "QR Code Generator",
       "category": "developer",
-      "desc": "Create scannable QR codes from text, URLs or WiFi credentials with custom colours.",
-      "intro": "Share links, text or WiFi details through a scannable code."
+      "desc": "Create scannable QR codes from links, text, WiFi credentials or vCard details, saved as a PNG.",
+      "intro": "Share links, text or WiFi details through a scannable code.",
+      "faq": [
+        {
+          "q": "Can I make a WiFi QR code?",
+          "a": "Yes — switch to WiFi mode and enter your SSID, key and encryption; the code includes the proper WIFI: syntax."
+        },
+        {
+          "q": "How do I save my QR code?",
+          "a": "Press Save PNG to download a crisp, scannable black-and-white QR code image."
+        }
+      ]
     },
     {
       "slug": "barcode-generator",
       "title": "Barcode Generator",
       "category": "developer",
       "desc": "Generate EAN-13 barcodes from any 12 or 13 digit number and download as PNG. Works fully offline.",
-      "intro": "Produce retail-ready EAN-13 barcodes offline for labels and packaging."
+      "intro": "Produce retail-ready EAN-13 barcodes offline for labels and packaging.",
+      "faq": [
+        {
+          "q": "Which barcode standard is used?",
+          "a": "EAN-13, the retail barcode format readable by most scanners worldwide."
+        },
+        {
+          "q": "Is a check digit added automatically?",
+          "a": "Yes — enter the first 12 digits and the 13th check digit is computed and added for you."
+        }
+      ]
     },
     {
       "slug": "number-base-converter",
       "title": "Base Converter",
       "category": "developer",
       "desc": "Convert between binary, octal, decimal and hexadecimal, with bit-length options.",
-      "intro": "Switch number systems for programming, networking and debugging."
+      "intro": "Switch number systems for programming, networking and debugging.",
+      "faq": [
+        {
+          "q": "Which bases are supported?",
+          "a": "Binary (2), octal (8), decimal (10) and hexadecimal (16), plus a padded (0x00 style) binary/hex pair for byte-style values."
+        },
+        {
+          "q": "Can it convert fractions?",
+          "a": "No — the converter works with non-negative whole numbers; fractional and negative inputs are rejected."
+        }
+      ]
     },
     {
       "slug": "diff-checker",
       "title": "Diff Checker",
       "category": "developer",
       "desc": "Compare two texts and highlight added, removed and changed lines.",
-      "intro": "Spot exactly what changed between two versions of any text."
+      "intro": "Spot exactly what changed between two versions of any text.",
+      "faq": [
+        {
+          "q": "How are the two texts compared?",
+          "a": "Line by line, highlighting added, removed and changed lines with a matching algorithm that minimizes the patch."
+        },
+        {
+          "q": "Can I ignore whitespace differences?",
+          "a": "No — lines are compared verbatim, so leading and trailing whitespace count as changes. Normalize your text first if needed."
+        }
+      ]
     },
     {
       "slug": "ip-lookup",
       "title": "IP Lookup",
       "category": "developer",
       "desc": "Find networks, versions and CIDR details for IPv4 and IPv6 addresses.",
-      "intro": "Inspect addresses and CIDR details when configuring networks or security rules."
+      "intro": "Inspect addresses and CIDR details when configuring networks or security rules.",
+      "faq": [
+        {
+          "q": "Does this look up my geolocation?",
+          "a": "No — it is pure offline network math. For IPv4 it shows the version, class, network, broadcast, mask and host counts; for IPv6 the compressed and fully expanded forms. Geolocation would require a remote API."
+        },
+        {
+          "q": "What can I paste?",
+          "a": "An IPv4 or IPv6 address, optionally with a /prefix for CIDR."
+        }
+      ]
     },
     {
       "slug": "server-status-checker",
       "title": "Server Status Checker",
       "category": "developer",
       "desc": "Check whether a website is online with HTTP status, redirects and response time.",
-      "intro": "Quickly confirm a site is live and see how fast it responds."
+      "intro": "Quickly confirm a site is live and see how fast it responds.",
+      "faq": [
+        {
+          "q": "Why do some sites report \"blocked by browser\"?",
+          "a": "Many servers block cross-origin requests from browsers (CORS), so the tool clearly distinguishes site-down from browser-blocked results."
+        },
+        {
+          "q": "Does it use an external service?",
+          "a": "No — the request goes directly from your browser to the URL you provide."
+        }
+      ]
     },
     {
       "slug": "favicon-generator",
       "title": "Favicon Generator",
       "category": "generator",
-      "desc": "Create a favicon from an emoji, letter or gradient in any size, and download PNG variants.",
-      "intro": "Get a ready favicon from text, emoji or a gradient and drop it into your site."
+      "desc": "Create a letter or emoji favicon with a flat or rounded background in any size, and download the PNG.",
+      "intro": "Get a ready favicon from a letter or emoji with a flat or rounded background, and drop it into your site.",
+      "faq": [
+        {
+          "q": "Which sizes are available?",
+          "a": "Anything from 16px up to 512px via the size field, with one-click presets for 16, 32, 48, 64, 128, 180, 192 and 512."
+        },
+        {
+          "q": "What do I download?",
+          "a": "A single PNG at the exact pixel size you chose — ideal for favicons or app icons."
+        }
+      ]
     },
     {
       "slug": "username-generator",
       "title": "Username Generator",
       "category": "generator",
       "desc": "Generate catchy usernames from adjectives, animals and numbers for any platform.",
-      "intro": "Brainstorm available-sounding handles and usernames in seconds."
+      "intro": "Brainstorm available-sounding handles and usernames in seconds.",
+      "faq": [
+        {
+          "q": "Are usernames guaranteed unique within a batch?",
+          "a": "Yes — the generator avoids repeats inside the same batch you request."
+        },
+        {
+          "q": "How does it build names?",
+          "a": "It combines adjective + noun + optional number with separators such as dots, dashes and underscores — or an all-lowercase gamer style."
+        }
+      ]
     },
     {
       "slug": "color-palette-generator",
       "title": "Color Palette Generator",
       "category": "generator",
       "desc": "Generate harmonious 5-color palettes from any base colour, with HEX/CSV export.",
-      "intro": "Build harmonious colour sets for branding, design and CSS variables."
+      "intro": "Build harmonious colour sets for branding, design and CSS variables.",
+      "faq": [
+        {
+          "q": "Which harmonies are available?",
+          "a": "Analogous, complementary, triadic, tetradic and monochromatic schemes are computed from your base color."
+        },
+        {
+          "q": "How do I export the palette?",
+          "a": "Copy the HEX codes at once or download the palette as a CSS custom-properties file."
+        }
+      ]
     },
     {
       "slug": "css-background-patterns",
       "title": "CSS Background Patterns",
       "category": "generator",
       "desc": "Generate repeatable CSS background patterns with a live preview and one-click copy.",
-      "intro": "Add subtle patterned backgrounds with ready-to-copy CSS."
+      "intro": "Add subtle patterned backgrounds with ready-to-copy CSS.",
+      "faq": [
+        {
+          "q": "Do the patterns work in every browser?",
+          "a": "They use standard CSS gradients (linear, radial, conic and repeating) which render in all modern browsers."
+        },
+        {
+          "q": "How do I apply one to my site?",
+          "a": "Tweak the pattern, the two colors and the tile size, then copy the ready-made background CSS."
+        }
+      ]
     },
     {
       "slug": "calendar-year-generator",
       "title": "Year Calendar",
       "category": "generator",
-      "desc": "Generate a printable full-year calendar for any year, with holidays and week numbers.",
-      "intro": "Produce a printable year overview with week numbers and holidays."
+      "desc": "Generate a printable calendar for any year, as month grids or a compact full-year overview.",
+      "intro": "Produce a printable calendar for any year, as month grids or a compact full-year overview.",
+      "faq": [
+        {
+          "q": "Which years can I generate?",
+          "a": "Any year from 1900 to 2200, in two views: twelve month grids, or a compact full-year overview. It prints directly from the browser."
+        },
+        {
+          "q": "Does it add holidays or week numbers?",
+          "a": "No — it renders the true calendar days only, highlighting today in the month view."
+        }
+      ]
     },
     {
       "slug": "random-number-generator",
       "title": "Random Number Generator",
       "category": "generator",
       "desc": "Generate cryptographically secure random numbers in any range, with counts and sorting.",
-      "intro": "Draw secure random numbers for raffles, sampling and testing."
+      "intro": "Draw secure random numbers for raffles, sampling and testing.",
+      "faq": [
+        {
+          "q": "Are the numbers really random?",
+          "a": "Yes — they come from the browser's cryptographically secure generator (crypto.getRandomValues), not a predictable pseudo-random algorithm."
+        },
+        {
+          "q": "Can I generate several without repeats?",
+          "a": "Yes — when a count is entered the tool samples distinct numbers within your range, skipping repeats."
+        }
+      ]
     },
     {
       "slug": "event-countdown-generator",
       "title": "Event Countdown",
       "category": "generator",
       "desc": "Build a shareable link to a live countdown for any date and time.",
-      "intro": "Share a live countdown link for launch days, deadlines and events."
+      "intro": "Share a live countdown link for launch days, deadlines and events.",
+      "faq": [
+        {
+          "q": "Does the link keep counting down?",
+          "a": "Yes — the date is embedded in the link, so it recalculates the remaining time every time it is opened."
+        },
+        {
+          "q": "Why does the preview keep resetting?",
+          "a": "The live preview starts from a default date (five days ahead) on each fresh visit. Set the field again or open the shared ?until= link to pin a specific moment."
+        }
+      ]
     },
     {
       "slug": "percentage-calculator",
       "title": "Percentage Calculator",
       "category": "calculator",
       "desc": "Calculate percentages instantly: what is X% of Y, percent change, and more.",
-      "intro": "Solve everyday math - discounts, growth and proportions - instantly."
+      "intro": "Solve everyday math - discounts, growth and proportions - instantly.",
+      "faq": [
+        {
+          "q": "What can it compute?",
+          "a": "What X percent of Y equals, with a summary line showing the working (for example, 10% of 250 = 25) and quick presets for common cases such as sale, tax and discount."
+        },
+        {
+          "q": "How precise are results?",
+          "a": "Results are formatted to a clean decimal with a sensible number of digits, and the summary line shows the exact math."
+        }
+      ]
     },
     {
       "slug": "bmi-calculator",
       "title": "BMI Calculator",
       "category": "calculator",
       "desc": "Calculate your Body Mass Index and check which weight category it falls in.",
-      "intro": "Get your BMI and the weight category it maps to."
+      "intro": "Get your BMI and the weight category it maps to.",
+      "faq": [
+        {
+          "q": "How is BMI interpreted?",
+          "a": "The result is categorized as Underweight, Healthy, Overweight or Obese using the standard WHO cut-offs."
+        },
+        {
+          "q": "Is BMI accurate for athletes?",
+          "a": "It's a screening index and does not account for muscle mass. Use it as a rough guide, not a diagnosis."
+        }
+      ]
     },
     {
       "slug": "loan-calculator",
       "title": "Loan Calculator",
       "category": "calculator",
       "desc": "Estimate monthly payments, total interest and amortisation for any loan.",
-      "intro": "See the real cost of borrowing before you commit."
+      "intro": "See the real cost of borrowing before you commit.",
+      "faq": [
+        {
+          "q": "What does the calculation assume?",
+          "a": "A fixed interest rate with equal monthly payments over the loan term — the standard amortizing-loan model."
+        },
+        {
+          "q": "What details do I get?",
+          "a": "The monthly payment, the total amount paid over the term, and the total interest included in those payments."
+        }
+      ]
     },
     {
       "slug": "age-calculator",
       "title": "Age Calculator",
       "category": "calculator",
       "desc": "Work out your exact age in years, months and days from any date of birth.",
-      "intro": "Find the exact age between any two dates."
+      "intro": "Find the exact age between any two dates.",
+      "faq": [
+        {
+          "q": "How is the age computed?",
+          "a": "The exact number of years, months and days between the two dates you choose, including a leap-safe algorithm."
+        },
+        {
+          "q": "Can I use a different end date?",
+          "a": "Yes — set an end date instead of today to compute age between any two dates."
+        }
+      ]
     },
     {
       "slug": "discount-calculator",
       "title": "Discount Calculator",
       "category": "calculator",
       "desc": "Find the final price after a percentage discount and how much you save.",
-      "intro": "Know the final price and your savings while you shop."
+      "intro": "Know the final price and your savings while you shop.",
+      "faq": [
+        {
+          "q": "Does the calculator include tax?",
+          "a": "No — it works with the price and the discount percentage only. Add tax to the amount yourself if needed."
+        },
+        {
+          "q": "What does it report?",
+          "a": "The savings amount, the final price, and the total you pay after applying the discount."
+        }
+      ]
     },
     {
       "slug": "tip-calculator",
       "title": "Tip Calculator",
       "category": "calculator",
       "desc": "Split a bill with your chosen tip percentage and see the per-person amount.",
-      "intro": "Split restaurant bills and tips fairly among friends."
+      "intro": "Split restaurant bills and tips fairly among friends.",
+      "faq": [
+        {
+          "q": "Can I split the bill?",
+          "a": "Yes — set the number of people and each person's share (including the tip) is calculated at once."
+        },
+        {
+          "q": "How precise are the shares?",
+          "a": "All amounts are shown to the cent (2 decimal places), so a three-way split stays exact."
+        }
+      ]
     },
     {
       "slug": "unit-converter",
       "title": "Unit Converter",
       "category": "calculator",
       "desc": "Convert length, weight, temperature, data, speed, time, volume, area and fuel units.",
-      "intro": "Convert between metric and imperial units, temperatures and data sizes."
+      "intro": "Convert between metric and imperial units, temperatures and data sizes.",
+      "faq": [
+        {
+          "q": "Which categories are available?",
+          "a": "Length, weight, data, speed, time, volume, area, fuel and temperature."
+        },
+        {
+          "q": "How many decimals do I get?",
+          "a": "Results keep up to 6 decimal places, with trailing zeros trimmed for readability."
+        }
+      ]
     },
     {
       "slug": "triangle-calculator",
       "title": "Triangle Calculator",
       "category": "calculator",
       "desc": "Solve right triangles and compute area, perimeter and hypotenuse from two values.",
-      "intro": "Solve right-triangle geometry from just two known values."
+      "intro": "Solve right-triangle geometry from just two known values.",
+      "faq": [
+        {
+          "q": "Which values can I enter?",
+          "a": "For right triangles: the two legs, or a leg plus the hypotenuse; the third side and both angles are computed."
+        },
+        {
+          "q": "Does it draw the triangle?",
+          "a": "No — it computes the missing side, area, perimeter and both acute angles numerically. There is no visual diagram."
+        }
+      ]
     },
     {
       "slug": "color-picker",
       "title": "Color Picker",
       "category": "color",
       "desc": "Pick any colour and immediately see its HEX, RGB, HSL and named-colour code.",
-      "intro": "Grab colours from your screen and copy their codes instantly."
+      "intro": "Grab colours from your screen and copy their codes instantly.",
+      "faq": [
+        {
+          "q": "How do I get the exact color code?",
+          "a": "The HEX, RGB and HSL values are shown live as you pick, with one-click copy for each."
+        },
+        {
+          "q": "Can I type a color code?",
+          "a": "Yes — paste a HEX value into the HEX field and the RGB, HSL and closest named color update instantly."
+        }
+      ]
     },
     {
       "slug": "color-converter",
       "title": "Color Converter",
       "category": "color",
       "desc": "Convert between HEX, RGB, HSL and CSS named colours, with live preview.",
-      "intro": "Translate colour codes between formats for CSS and design tools."
+      "intro": "Translate colour codes between formats for CSS and design tools.",
+      "faq": [
+        {
+          "q": "Which formats can I convert?",
+          "a": "HEX, RGB, HSL and CSS named colors, in any combination."
+        },
+        {
+          "q": "Does it handle alpha?",
+          "a": "No — it converts solid (opaque) HEX values to RGB, HSL and a CSS name. For transparency, expand the hex to RGBA yourself."
+        }
+      ]
     },
     {
       "slug": "color-mixer",
       "title": "Color Mixer",
       "category": "color",
       "desc": "Blend, shade and tint two colours and adjust the mix ratio visually.",
-      "intro": "Mix and adjust colours visually to find the perfect shade."
+      "intro": "Mix and adjust colours visually to find the perfect shade.",
+      "faq": [
+        {
+          "q": "Can I control the mix ratio?",
+          "a": "Yes — slide the ratio from 100% first color to 100% second color and preview every intermediate shade."
+        },
+        {
+          "q": "Is the mixing color-accurate?",
+          "a": "The tool mixes in the linear (photo) RGB space, which matches how light actually blends, then converts back for display."
+        }
+      ]
     },
     {
       "slug": "color-contrast",
       "title": "Color Contrast Checker",
       "category": "color",
       "desc": "Verify WCAG contrast ratios between two colours for accessible text.",
-      "intro": "Make sure text passes WCAG accessibility requirements."
+      "intro": "Make sure text passes WCAG accessibility requirements.",
+      "faq": [
+        {
+          "q": "Which WCAG levels are checked?",
+          "a": "AA (4.5:1 normal text, 3:1 large) and AAA (7:1 normal text, 4.5:1 large)."
+        },
+        {
+          "q": "How is the ratio calculated?",
+          "a": "Using the standard WCAG formula based on the relative luminance of the two colors you provide."
+        }
+      ]
     },
     {
       "slug": "color-name",
       "title": "Color Name Finder",
       "category": "color",
       "desc": "Find the nearest CSS colour name to any HEX or RGB value.",
-      "intro": "Put a friendly name to any colour code."
+      "intro": "Put a friendly name to any colour code.",
+      "faq": [
+        {
+          "q": "How accurate are the names?",
+          "a": "Each color is matched to its nearest CSS named color by perceptual distance within the RGB cube."
+        },
+        {
+          "q": "Can I see the exact values too?",
+          "a": "Yes — the input's exact HEX value is shown beside the matched name, ready to copy."
+        }
+      ]
     },
     {
       "slug": "meta-tag-generator",
       "title": "Meta Tag Generator",
       "category": "web",
       "desc": "Generate SEO meta tags for title, description, Open Graph and Twitter cards.",
-      "intro": "Generate proper SEO tags and social preview metadata for any page."
+      "intro": "Generate proper SEO tags and social preview metadata for any page.",
+      "faq": [
+        {
+          "q": "What tags are generated?",
+          "a": "Title, description, keywords, canonical URL, favicon, Open Graph and Twitter card meta tags ready to paste into your page."
+        },
+        {
+          "q": "What goes into the output?",
+          "a": "Ready-to-paste HTML tags for title, description, keywords, canonical URL, favicon, Open Graph and your chosen Twitter card type."
+        }
+      ]
     },
     {
       "slug": "ssl-checker",
       "title": "SSL Certificate Checker",
       "category": "web",
       "desc": "Check a domain certificate from your browser, showing issuer and expiry.",
-      "intro": "Check when a domain certificate expires and who issued it."
+      "intro": "Check when a domain certificate expires and who issued it.",
+      "faq": [
+        {
+          "q": "Can it check the certificate chain?",
+          "a": "No. From a browser you can only observe whether an HTTPS connection succeeds and which security headers the server sends. Issuer, expiry and full chain details require a server-side test."
+        },
+        {
+          "q": "Which input should I use?",
+          "a": "A bare domain such as example.com, or an https:// URL — a scheme and path are stripped automatically."
+        }
+      ]
     },
     {
       "slug": "html-headings-extractor",
       "title": "Heading Tree Extractor",
       "category": "web",
       "desc": "Extract the H1-H6 outline from any HTML so you can review your heading structure.",
-      "intro": "Review your heading hierarchy before publishing."
+      "intro": "Review your heading hierarchy before publishing.",
+      "faq": [
+        {
+          "q": "What is extracted?",
+          "a": "An ordered outline of every H1–H6 heading with its nesting level, exactly as it appears in the source."
+        },
+        {
+          "q": "How do I use the result?",
+          "a": "Copy the outline as plain text and use it to review your heading hierarchy or compare it against an SEO checklist."
+        }
+      ]
     },
     {
       "slug": "sitemap-validator",
       "title": "Sitemap Validator",
       "category": "web",
       "desc": "Validate and inspect any XML sitemap or robots.txt file, with counts and warnings.",
-      "intro": "Validate your sitemap and robots.txt before submitting to search engines."
+      "intro": "Validate your sitemap and robots.txt before submitting to search engines.",
+      "faq": [
+        {
+          "q": "What exactly is validated?",
+          "a": "Well-formed XML, the urlset structure, a non-empty loc per URL, valid absolute URLs, and the lastmod date format when present."
+        },
+        {
+          "q": "Can I check a file instead of pasting?",
+          "a": "Paste the XML directly, or enter the sitemap URL — remote fetching works when the server allows browser (CORS) requests."
+        }
+      ]
     },
     {
       "slug": "robots-txt-generator",
       "title": "Robots.txt Generator",
       "category": "web",
       "desc": "Build a correct robots.txt with user agents, allow/deny rules and sitemap links.",
-      "intro": "Create a correct robots.txt and avoid accidental blocking."
+      "intro": "Create a correct robots.txt and avoid accidental blocking.",
+      "faq": [
+        {
+          "q": "What can I configure?",
+          "a": "One user-agent with Allow and Disallow paths, an optional crawl-delay and a Sitemap line. For multiple user-agents, generate and combine several blocks."
+        },
+        {
+          "q": "What does the output look like?",
+          "a": "A clean, ready-to-serve robots.txt you can copy straight to your clipboard or into a file."
+        }
+      ]
     },
     {
       "slug": "webpage-metadata-extractor",
       "title": "Webpage Metadata Extractor",
       "category": "web",
       "desc": "Paste HTML and extract title, description, images and social preview tags.",
-      "intro": "See every SEO and social tag a page exposes at a glance."
+      "intro": "See every SEO and social tag a page exposes at a glance.",
+      "faq": [
+        {
+          "q": "Why do some URLs fail to load?",
+          "a": "Many sites block cross-origin browser requests (CORS). The tool shows the title, description, and image from any page that permits it."
+        },
+        {
+          "q": "Can I paste HTML instead of a URL?",
+          "a": "Yes — switch to \"paste HTML\" mode to extract metadata from markup directly without a network request."
+        }
+      ]
     }
   ]
 }

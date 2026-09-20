@@ -166,7 +166,13 @@ export function markdownToHtml(md: string): string {
       .replace(/`([^`]+)`/g, "<code>$1</code>")
       .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
       .replace(/\*([^*]+)\*/g, "<em>$1</em>")
-      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" rel="noopener" target="_blank">$1</a>');
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_m, label: string, href: string) => {
+        const url = href.trim();
+        if (/^(https?:|mailto:)/i.test(url) && !/\s/.test(url)) {
+          return `<a href="${esc(url)}" rel="noopener" target="_blank">${label}</a>`;
+        }
+        return label;
+      });
   const lines = md.replace(/\r\n/g, "\n").split("\n");
   const out: string[] = [];
   let list: string[] | null = null;

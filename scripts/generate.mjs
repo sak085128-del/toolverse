@@ -1,4 +1,5 @@
 import { readFileSync, writeFileSync, mkdirSync, readdirSync } from "node:fs";
+import { deflateSync, crc32 } from "node:zlib";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -28,8 +29,11 @@ const GOOGLE_VERIFY = '<meta name="google-site-verification" content="googleb473
 const esc = (s) =>
   String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
-function head(title, desc, canonical, jsonld) {
-  const ld = jsonld ? `<script type="application/ld+json">${JSON.stringify(jsonld).replace(/</g, "\\u003c")}</script>` : "";
+function head(title, desc, canonical, jsonld, ogImage) {
+  const scripts = (Array.isArray(jsonld) ? jsonld : jsonld ? [jsonld] : []).map(
+    (obj) => `<script type="application/ld+json">${JSON.stringify(obj).replace(/</g, "\\u003c")}</script>`
+  ).join("\n  ");
+  const og = ogImage || `${SITE}/og.png`;
   return `<!doctype html>
 <html lang="en" data-theme="light">
 <head>
@@ -45,14 +49,18 @@ function head(title, desc, canonical, jsonld) {
   <meta property="og:title" content="${esc(title)}">
   <meta property="og:description" content="${esc(desc)}">
   <meta property="og:url" content="${esc(canonical)}">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="${esc(og)}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${esc(title)}">
+  <meta name="twitter:description" content="${esc(desc)}">
+  <meta name="twitter:image" content="${esc(og)}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   ${ADSENSE}
   ${GOOGLE_VERIFY}
   <link rel="stylesheet" href="${ASSET_CSS}">
-  ${ld}
+  ${scripts}
 </head>`;
 }
 
@@ -100,10 +108,11 @@ function searchModal() {
 }
 
 function page(title, desc, bodyAttrs, mainHtml, opts = {}) {
-  return `${head(title, desc, SITE + opts.canonical, opts.jsonld)}
+  return `${head(title, desc, SITE + opts.canonical, opts.jsonld, opts.ogImage)}
 <body${bodyAttrs}>
+  <a class="skip-link" href="#main">Skip to content</a>
   ${header()}
-  <main class="wrap">
+  <main class="wrap" id="main">
     ${mainHtml}
   </main>
   ${footer()}
@@ -122,11 +131,186 @@ if (readFileSync) {
   } catch { /* optional */ }
 }
 
+/* ---- OG image generator (pure Node, no deps) ---- */
+const GLYPH = {
+  A: [0b01110,0b10001,0b10001,0b11111,0b10001,0b10001,0b10001],
+  B: [0b11110,0b10001,0b10001,0b11110,0b10001,0b10001,0b11110],
+  C: [0b01110,0b10001,0b10000,0b10000,0b10000,0b10001,0b01110],
+  D: [0b11110,0b10001,0b10001,0b10001,0b10001,0b10001,0b11110],
+  E: [0b11111,0b10000,0b10000,0b11110,0b10000,0b10000,0b11111],
+  F: [0b11111,0b10000,0b10000,0b11110,0b10000,0b10000,0b10000],
+  G: [0b01110,0b10001,0b10000,0b10111,0b10001,0b10001,0b01111],
+  H: [0b10001,0b10001,0b10001,0b11111,0b10001,0b10001,0b10001],
+  I: [0b11111,0b00100,0b00100,0b00100,0b00100,0b00100,0b11111],
+  J: [0b00111,0b00010,0b00010,0b00010,0b00010,0b10010,0b01100],
+  K: [0b10001,0b10010,0b10100,0b11000,0b10100,0b10010,0b10001],
+  L: [0b10000,0b10000,0b10000,0b10000,0b10000,0b10000,0b11111],
+  M: [0b10001,0b11011,0b10101,0b10101,0b10001,0b10001,0b10001],
+  N: [0b10001,0b11001,0b10101,0b10011,0b10001,0b10001,0b10001],
+  O: [0b01110,0b10001,0b10001,0b10001,0b10001,0b10001,0b01110],
+  P: [0b11110,0b10001,0b10001,0b11110,0b10000,0b10000,0b10000],
+  Q: [0b01110,0b10001,0b10001,0b10001,0b10101,0b10010,0b01101],
+  R: [0b11110,0b10001,0b10001,0b11110,0b10100,0b10010,0b10001],
+  S: [0b01111,0b10000,0b10000,0b01110,0b00001,0b00001,0b11110],
+  T: [0b11111,0b00100,0b00100,0b00100,0b00100,0b00100,0b00100],
+  U: [0b10001,0b10001,0b10001,0b10001,0b10001,0b10001,0b01110],
+  V: [0b10001,0b10001,0b10001,0b10001,0b10001,0b01010,0b00100],
+  W: [0b10001,0b10001,0b10001,0b10101,0b10101,0b10101,0b01010],
+  X: [0b10001,0b10001,0b01010,0b00100,0b01010,0b10001,0b10001],
+  Y: [0b10001,0b10001,0b01010,0b00100,0b00100,0b00100,0b00100],
+  Z: [0b11111,0b00001,0b00010,0b00100,0b01000,0b10000,0b11111],
+  "0": [0b01110,0b10001,0b10011,0b10101,0b11001,0b10001,0b01110],
+  "1": [0b00100,0b01100,0b00100,0b00100,0b00100,0b00100,0b01110],
+  "2": [0b01110,0b10001,0b00001,0b00010,0b00100,0b01000,0b11111],
+  "3": [0b11110,0b00001,0b00001,0b01110,0b00001,0b00001,0b11110],
+  "4": [0b00010,0b00110,0b01010,0b10010,0b11111,0b00010,0b00010],
+  "5": [0b11111,0b10000,0b11110,0b00001,0b00001,0b10001,0b01110],
+  "6": [0b01110,0b10000,0b10000,0b11110,0b10001,0b10001,0b01110],
+  "7": [0b11111,0b00001,0b00010,0b00100,0b01000,0b01000,0b01000],
+  "8": [0b01110,0b10001,0b10001,0b01110,0b10001,0b10001,0b01110],
+  "9": [0b01110,0b10001,0b10001,0b01111,0b00001,0b00001,0b01110],
+  " ": [0,0,0,0,0,0,0],
+  "-": [0,0,0,0b01110,0,0,0],
+  "/": [0b00001,0b00010,0b00100,0b01000,0b10000,0x00,0x00],
+  ".": [0,0,0,0,0,0b00110,0b00110],
+  ",": [0,0,0,0,0,0b00110,0b00100],
+  ":": [0,0b00100,0b00100,0,0b00100,0b00100,0],
+  "&": [0b01100,0b10010,0b10100,0b01000,0b10101,0b10011,0b01101],
+  "'": [0b00100,0b00100,0b00100,0,0,0,0],
+  "(": [0b00010,0b00100,0b01000,0b01000,0b01000,0b00100,0b00010],
+  ")": [0b01000,0b00100,0b00010,0b00010,0b00010,0b00100,0b01000],
+  "+": [0,0b00100,0b00100,0b11111,0b00100,0b00100,0],
+  "!": [0b00100,0b00100,0b00100,0b00100,0b00100,0,0b00100],
+  "?": [0b01110,0b10001,0b00001,0b00010,0b00100,0,0b00100],
+  "#": [0b01010,0b01010,0b11111,0b01010,0b11111,0b01010,0b01010],
+  "=": [0,0,0b11111,0,0b11111,0,0],
+  ">": [0b01000,0b00100,0b00010,0b00100,0b01000,0,0],
+  "<": [0b00010,0b00100,0b01000,0b00100,0b00010,0,0],
+  "%": [0b00110,0b01001,0b00010,0b00100,0b01000,0b10010,0b01100],
+  "|": [0b00100,0b00100,0b00100,0b00100,0b00100,0b00100,0b00100],
+};
+function pngChunk(type, data) {
+  const t = Buffer.from(type, "ascii");
+  const len = Buffer.alloc(4);
+  len.writeUInt32BE(data.length, 0);
+  const body = Buffer.concat([t, data]);
+  const crc = Buffer.alloc(4);
+  crc.writeUInt32BE(crc32(body) >>> 0, 0);
+  return Buffer.concat([len, body, crc]);
+}
+function encodePNG(w, h, rgba) {
+  const sig = Buffer.from("89504e470d0a1a0a", "hex");
+  const ihdr = Buffer.alloc(13);
+  ihdr.writeUInt32BE(w, 0);
+  ihdr.writeUInt32BE(h, 4);
+  ihdr[8] = 8;
+  ihdr[9] = 6;
+  const stride = w * 4;
+  const raw = Buffer.alloc(h * (1 + stride));
+  for (let y = 0; y < h; y++) {
+    raw[y * (1 + stride)] = 0;
+    rgba.copy(raw, y * (1 + stride) + 1, y * stride, (y + 1) * stride);
+  }
+  return Buffer.concat([sig, pngChunk("IHDR", ihdr), pngChunk("IDAT", deflateSync(raw, { level: 9 })), pngChunk("IEND", Buffer.alloc(0))]);
+}
+function ogBuffer(w, h) {
+  const buf = Buffer.alloc(w * h * 4);
+  const c1 = [99, 102, 241];
+  const c2 = [6, 182, 212];
+  for (let y = 0; y < h; y++) {
+    const k = y / h;
+    for (let x = 0; x < w; x++) {
+      const o = (y * w + x) * 4;
+      buf[o] = Math.round(c1[0] * (1 - k) + c2[0] * k);
+      buf[o + 1] = Math.round(c1[1] * (1 - k) + c2[1] * k);
+      buf[o + 2] = Math.round(c1[2] * (1 - k) + c2[2] * k);
+      buf[o + 3] = 255;
+    }
+  }
+  return buf;
+}
+function textWidth(text, scale) {
+  return text.length * 6 * scale - scale;
+}
+function putText(buf, w, text, x, y, scale, rgb) {
+  let cx = x;
+  for (const ch of text) {
+    const g = GLYPH[ch] || GLYPH[" "];
+    for (let row = 0; row < 7; row++) {
+      const bits = g[row];
+      for (let col = 0; col < 5; col++) {
+        if (((bits >> (4 - col)) & 1) === 0) continue;
+        for (let dy = 0; dy < scale; dy++) {
+          for (let dx = 0; dx < scale; dx++) {
+            const px = cx + col * scale + dx;
+            const py = y + row * scale + dy;
+            if (px < 0 || py < 0 || px >= w) continue;
+            const o = (py * w + px) * 4;
+            buf[o] = rgb[0];
+            buf[o + 1] = rgb[1];
+            buf[o + 2] = rgb[2];
+            buf[o + 3] = 255;
+          }
+        }
+      }
+    }
+    cx += 6 * scale;
+  }
+}
+function ogImage(title) {
+  const w = 1200, h = 630;
+  const buf = ogBuffer(w, h);
+  const brand = "TOOLVERSE  FREE ONLINE TOOL";
+  const tagScale = 13;
+  putText(buf, w, brand, Math.round((w - textWidth(brand, tagScale)) / 2), 156, tagScale, [255, 255, 255]);
+  for (let x = 220; x < 980; x++) {
+    const o = (330 * w + x) * 4;
+    buf[o] = 255; buf[o + 1] = 255; buf[o + 2] = 255; buf[o + 3] = 230;
+  }
+  const upper = String(title || "ToolVerse").toUpperCase().trim();
+  let scale = 42;
+  while (textWidth(upper, scale) > 1080 && scale > 8) scale -= 2;
+  putText(buf, w, upper, Math.round((w - textWidth(upper, scale)) / 2), 392, scale, [255, 255, 255]);
+  const foot = "100% FREE  |  NO UPLOADS  |  PRIVATE";
+  const footScale = 10;
+  putText(buf, w, foot, Math.round((w - textWidth(foot, footScale)) / 2), 506, footScale, [255, 255, 255]);
+  return encodePNG(w, h, buf);
+}
+mkdirSync(join(dist, "og"), { recursive: true });
+writeFileSync(join(dist, "og.png"), ogImage("ToolVerse"));
+for (const t of meta.tools) writeFileSync(join(dist, "og", `${t.slug}.png`), ogImage(t.title));
+/* ---- end OG image generator ---- */
+
 const catLabel = (id) => {
   const c = meta.categories.find((x) => x.id === id);
   return c ? c.label : id;
 };
 const tool = (slug) => meta.tools.find((t) => t.slug === slug);
+
+function relatedTools(t, count = 4) {
+  const words = (s) => (s || "").toLowerCase().replace(/_/g, " ").split(/\W+/).filter(Boolean);
+  const mine = new Set(words(t.title).concat(words(t.desc), words(t.slug)));
+  const scored = meta.tools
+    .filter((x) => x.slug !== t.slug)
+    .map((x) => {
+      const theirs = words(x.title).concat(words(x.desc), words(x.slug));
+      let score = 0;
+      if (x.category === t.category) score += 3;
+      for (const w of theirs) if (mine.has(w)) score += 1;
+      return { x, score };
+    })
+    .sort((a, b) => b.score - a.score || a.x.title.localeCompare(b.x.title));
+  return scored.slice(0, count).map((s) => s.x);
+}
+
+function faqSection(t) {
+  const faq = t.faq || [];
+  if (!faq.length) return "";
+  return `<section class="faq" aria-label="Frequently asked questions">
+    <h2 class="sec-title">Frequently asked questions</h2>
+    ${faq.map((f) => `<details class="faq-item"><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join("")}
+  </section>`;
+}
 
 const toolCard = (t) =>
   `<a class="card tool-card" href="/tool/${t.slug}/"><h4>${esc(t.title)}</h4><p>${esc(t.desc)}</p></a>`;
@@ -168,12 +352,9 @@ writeFileSync(
         "@type": "WebSite",
         name: "ToolVerse",
         url: SITE,
-        potentialAction: {
-          "@type": "SearchAction",
-          target: `${SITE}/tool/{query}`,
-          "query-input": "required name=query",
-        },
+        description: "Free online tools that run entirely in your browser.",
       },
+      ogImage: `${SITE}/og.png`,
     }
   )
 );
@@ -220,6 +401,19 @@ writeFileSync(
 for (const t of meta.tools) {
   const cat = catLabel(t.category);
   const path = `/tool/${t.slug}/`;
+  const rel = relatedTools(t);
+  const ogImage = `${SITE}/og/${t.slug}.png`;
+  const faqLd = (t.faq || []).length
+    ? [{
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: t.faq.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      }]
+    : [];
   mkdirSync(join(dist, "tool", t.slug), { recursive: true });
   writeFileSync(
     join(dist, "tool", t.slug, "index.html"),
@@ -227,7 +421,7 @@ for (const t of meta.tools) {
       `${t.title} — ToolVerse`,
       t.desc,
       ` data-page="tool" data-tool="${t.slug}"`,
-      `<nav class="crumbs"><a href="/">Home</a> <span>›</span> <a href="/category/${t.category}/">${esc(cat)}</a></nav>
+      `<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> <span>›</span> <a href="/category/${t.category}/">${esc(cat)}</a> <span>›</span> <span aria-current="page">${esc(t.title)}</span></nav>
       <div class="page-title-row">
         <h1 data-tool-title>${esc(t.title)}</h1>
         <span data-fav-insert></span>
@@ -235,20 +429,37 @@ for (const t of meta.tools) {
       <p class="tool-intro">${esc(t.desc)}</p>
       <p class="tool-about">${esc(t.intro || "")}</p>
       <div class="ad-slot" data-slot="tool-top" aria-hidden="true"></div>
-      <div class="tool-shell"><div class="tool-pane" id="app"></div></div>`,
+      <div class="tool-shell"><div class="tool-pane" id="app"></div></div>
+      ${faqSection(t)}
+      ${rel.length ? `<section class="related" data-static-related aria-label="Related tools"><h2 class="sec-title">Related tools</h2><div class="grid tools-grid">${rel.map(toolCard).join("")}</div></section>` : ""}
+      <div class="ad-slot" data-slot="tool-bottom" aria-hidden="true"></div>`,
       {
         canonical: path,
-        jsonld: {
-          "@context": "https://schema.org",
-          "@type": "WebApplication",
-          name: t.title,
-          description: ((t.desc + " " + (t.intro || "")).trim()),
-          applicationCategory: "UtilitiesApplication",
-          operatingSystem: "Any (web)",
-          browserRequirements: "Requires JavaScript",
-          url: SITE + path,
-          offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-        },
+        ogImage,
+        jsonld: [
+          {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            name: t.title,
+            description: ((t.desc + " " + (t.intro || "")).trim()),
+            applicationCategory: "UtilitiesApplication",
+            operatingSystem: "Any (web)",
+            browserRequirements: "Requires JavaScript",
+            url: SITE + path,
+            image: ogImage,
+            offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: SITE + "/" },
+              { "@type": "ListItem", position: 2, name: cat, item: `${SITE}/category/${t.category}/` },
+              { "@type": "ListItem", position: 3, name: t.title, item: SITE + path },
+            ],
+          },
+          ...faqLd,
+        ],
       }
     )
   );
@@ -265,12 +476,41 @@ for (const c of meta.categories) {
       `${c.label} tools — ToolVerse`,
       c.desc || `Free ${c.label.toLowerCase()} tools that run in your browser.`,
       ` data-page="category" data-cat="${c.id}"`,
-      `<nav class="crumbs"><a href="/">Home</a> <span>›</span> <span>${esc(c.label)}</span></nav>
+      `<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> <span>›</span> <span aria-current="page">${esc(c.label)}</span></nav>
       <div class="page-title-row"><h1 data-cat-title>${esc(c.label)}</h1></div>
       <p class="tool-intro">${esc(c.desc || `Free online ${c.label.toLowerCase()} tools. Everything runs locally in your browser.`)}</p>
       <div class="ad-slot" data-slot="cat-top" aria-hidden="true"></div>
       <div class="grid tools-grid" data-tools>${tools.map(toolCard).join("")}</div>`,
-      { canonical: `/category/${c.id}/` }
+      {
+        canonical: `/category/${c.id}/`,
+        jsonld: [
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: SITE + "/" },
+              { "@type": "ListItem", position: 2, name: c.label, item: `${SITE}/category/${c.id}/` },
+            ],
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: `${c.label} tools`,
+            description: c.desc || `Free ${c.label.toLowerCase()} tools that run in your browser.`,
+            url: `${SITE}/category/${c.id}/`,
+            mainEntity: {
+              "@type": "ItemList",
+              numberOfItems: tools.length,
+              itemListElement: tools.map((t, i) => ({
+                "@type": "ListItem",
+                position: i + 1,
+                name: t.title,
+                url: `${SITE}/tool/${t.slug}/`,
+              })),
+            },
+          },
+        ],
+      }
     )
   );
 }
@@ -282,7 +522,17 @@ function staticPage(title, desc, slug, bodyHtml) {
     desc,
     ' data-page="static"',
     `<section class="static-page"><h1>${esc(title)}</h1>${bodyHtml}</section>`,
-    { canonical: `/${slug}/` }
+    {
+      canonical: `/${slug}/`,
+      jsonld: {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Home", item: SITE + "/" },
+          { "@type": "ListItem", position: 2, name: title, item: `${SITE}/${slug}/` },
+        ],
+      },
+    }
   );
 }
 
@@ -296,7 +546,7 @@ writeFileSync(
     <h3>Why we exist</h3>
     <p>Online tools are usually riddled with upload requirements, signup walls, file size limits and paywalls. ToolVerse does away with all of that. Open a tool, use it, and go. There's nothing to install, nothing to sign up for, and nothing to pay.</p>
     <h3>How the site makes money</h3>
-    <p>We keep everything free by showing minimal advertising. That's the only trade-off — you see a couple of ads, and in return all 76+ tools stay completely free, with no accounts and no data collection by us.</p>`
+    <p>We keep everything free by showing minimal advertising. That's the only trade-off — you see a couple of ads, and in return all 76 tools stay completely free, with no accounts and no data collection by us.</p>`
   )
 );
 
@@ -311,12 +561,12 @@ writeFileSync(
     <h3>What we do store</h3>
     <ul>
       <li>A few harmless preferences in your browser (theme, favorites) using localStorage.</li>
-      <li>Page view statistics via privacy-friendly analytics to understand which tools are used.</li>
+      <li>Nothing else — we do not run our own analytics or tracking scripts.</li>
     </ul>
     <h3>Third parties</h3>
-    <p>Advertising is served by Google AdSense. Google may use cookies and process advertiser data as described in the Google AdSense privacy policy and Google's Privacy & Terms. You can control this via Google's Ads Settings.</p>
+    <p>Advertising is served by Google AdSense. Google may use cookies and process advertiser data as described in the Google AdSense privacy policy and Google's Privacy & Terms. You can control this via Google's Ads Settings. The site also loads the Inter web font from Google Fonts, which may log an IP address in its standard logs.</p>
     <h3>Contact</h3>
-    <p>Questions? Reach out via the contact tool in our GitHub discussions."</p>`
+    <p>Questions? Reach out via our GitHub discussions.</p>`
   )
 );
 
@@ -343,6 +593,20 @@ ${sitemap.map((u) => `  <url><loc>${u}</loc></url>`).join("\n")}
 `
 );
 
+/* 404 page (Vercel serves this for any unknown route) */
+writeFileSync(
+  join(dist, "404.html"),
+  page(
+    "Page not found — ToolVerse",
+    "The page you were looking for does not exist. Browse all free online tools at ToolVerse.",
+    ' data-page="static"',
+    `<section class="static-page not-found"><h1>404 — page not found</h1>
+    <p>Sorry, that page doesn't exist or has moved.</p>
+    <p><a class="btn" href="/">Back to the home page</a> <a class="btn ghost" href="/tools/">Browse all tools</a></p></section>`,
+    { jsonld: [] }
+  )
+);
+
 console.log(
-  `Generated ${meta.tools.length} tool pages, ${meta.categories.length} category pages, ${sitemap.length} URLs total.`
+  `Generated ${meta.tools.length} tool pages, ${meta.categories.length} category pages, ${sitemap.length} URLs total (incl. custom 404 page).`
 );

@@ -266,7 +266,14 @@ const genTools: Record<string, ToolImpl> = {
         if (min > max) { toast("Min must be <= max"); return; }
         if (uniq && max - min + 1 < n) { toast("Range too small for unique values"); return; }
         const set = new Set<number>();
-        while (set.size < n) set.add(min + Math.floor(Math.random() * (max - min + 1)));
+        const range = max - min + 1;
+        const limit = Math.floor(0x100000000 / range) * range;
+        const buf = new Uint32Array(1);
+        const next = (): number => {
+          do { crypto.getRandomValues(buf); } while (buf[0] >= limit);
+          return min + (buf[0] % range);
+        };
+        while (set.size < n) set.add(next());
         const arr = [...set];
         if (sort) arr.sort((a, b) => a - b);
         put.textContent = arr.join("  ");

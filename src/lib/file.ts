@@ -27,6 +27,28 @@ export async function sha1(buf: ArrayBuffer): Promise<string> {
   const digest = await crypto.subtle.digest("SHA-1", buf);
   return bytesToHex(digest);
 }
+export async function sha512(buf: ArrayBuffer): Promise<string> {
+  const digest = await crypto.subtle.digest("SHA-512", buf);
+  return bytesToHex(digest);
+}
+export async function sha256OfBuffer(buf: ArrayBuffer): Promise<string> {
+  const digest = await crypto.subtle.digest("SHA-256", buf);
+  return bytesToHex(digest);
+}
+export function bytesToB64(u8: Uint8Array): string {
+  const bin = new Uint8Array(u8.byteLength);
+  bin.set(u8);
+  let s = "";
+  for (let i = 0; i < bin.length; i += 0x8000) {
+    s += String.fromCharCode(...bin.subarray(i, i + 0x8000));
+  }
+  return btoa(s);
+}
+export function hexToB64(hex: string): string {
+  const out = new Uint8Array(hex.length / 2);
+  for (let i = 0; i < hex.length; i += 2) out[i / 2] = parseInt(hex.slice(i, i + 2), 16);
+  return bytesToB64(out);
+}
 export async function md5(buf: ArrayBuffer): Promise<string> {
   return md5Bytes(new Uint8Array(buf));
 }

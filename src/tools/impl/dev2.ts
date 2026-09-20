@@ -1,6 +1,6 @@
 import type { ToolImpl } from "../types";
 import { btn, btnRow, copyBtn, node, textarea, toast, formatNumber } from "../../lib/core";
-import { uuidv4, uuidv7, sha256, sha1, md5, md5FromBytes } from "../../lib/file";
+import { uuidv4, uuidv7, sha256, sha256OfBuffer, sha1, sha512, md5, md5FromBytes, hexToB64 } from "../../lib/file";
 import qrcodeFactory from "../../lib/qrcode.js";
 import { ean13Bars, drawBarcode } from "../../lib/barcode";
 
@@ -100,7 +100,7 @@ const devTools2: Record<string, ToolImpl> = {
       `<div data-field-file hidden><div class="dropzone" data-drop data-multi="0">
         <p class="dz-main">Drop a file to hash</p><input type="file" data-file hidden></div></div>` +
       btnRow(btn("Hash it", "go", true)) +
-      results(result("Hex", `<textarea readonly data-node="hex" rows="3"></textarea>`, true), result("SHA-256 (GitHub style)", `<textarea readonly data-node="gh" rows="2"></textarea>`, true), result("Base64", `<input readonly data-node="b64">`)) +
+      results(result("Hex", `<textarea readonly data-node="hex" rows="3"></textarea>`, true), `<div class="result"><span class="label" data-node="ghl">Checksum style</span><span class="value mono"><textarea readonly data-node="gh" rows="2"></textarea></span></div>`, result("Base64", `<input readonly data-node="b64">`)) +
       statusBox("st"),
     init: (root) => {
       const src = root.querySelector<HTMLSelectElement>("[data-node='src']");
@@ -116,21 +116,21 @@ const devTools2: Record<string, ToolImpl> = {
         const st = () => node<HTMLElement>(root, "st");
         try {
           let hex: string;
-          let b64: string;
           if (src?.value === "file") {
             if (!file) { toast("Pick a file first"); return; }
             const buf = await file.arrayBuffer();
-            hex = algo === "MD5" ? await md5(buf) : algo === "SHA-1" ? await sha1(buf) : await sha256(new Blob([buf]));
-            b64 = btoa(String.fromCharCode(...new Uint8Array(new TextEncoder().encode(hex))));
+            hex = algo === "MD5" ? await md5(buf) : algo === "SHA-1" ? await sha1(buf) : algo === "SHA-512" ? await sha512(buf) : await sha256OfBuffer(buf);
           } else {
             const text = node<HTMLTextAreaElement>(root, "in").value;
             const bytes = new TextEncoder().encode(text);
-            hex = algo === "MD5" ? await md5FromBytes(bytes) : algo === "SHA-1" ? await sha1(toBuf(bytes)) : await sha256(new Blob([toBuf(bytes)]));
-            b64 = btoa(hex.replace(/(..)/g, (m) => String.fromCharCode(parseInt(m, 16))));
+            hex = algo === "MD5" ? await md5FromBytes(bytes) : algo === "SHA-1" ? await sha1(toBuf(bytes)) : algo === "SHA-512" ? await sha512(toBuf(bytes)) : await sha256(new Blob([toBuf(bytes)]));
           }
           node<HTMLTextAreaElement>(root, "hex").value = hex;
-          node<HTMLTextAreaElement>(root, "gh").value = algo === "SHA-256" ? `sha256:${hex}\nSHA256: ${hex}` : hex;
-          node<HTMLInputElement>(root, "b64").value = b64;
+          const gl = root.querySelector<HTMLElement>("[data-node='ghl']");
+          if (gl) gl.textContent = `Checksum (${algo.toLowerCase()} style)`;
+          const tag = algo.toLowerCase();
+          node<HTMLTextAreaElement>(root, "gh").value = algo === "SHA-256" ? `sha256:${hex}\nSHA256: ${hex}` : `${tag}:${hex}\n${tag.toUpperCase()}: ${hex}`;
+          node<HTMLInputElement>(root, "b64").value = hexToB64(hex);
           st().textContent = "Hashed locally — file never uploaded.";
         } catch { st().textContent = "Hashing failed in this browser."; }
       });

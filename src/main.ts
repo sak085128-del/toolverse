@@ -1,12 +1,11 @@
 import "./styles.css";
 import { applyTheme, cycleTheme, getTheme, pushRecent, isFavorite, toggleFavorite } from "./lib/store";
-import { initAnalytics, track, trackToolViews } from "./lib/track";
+import { initAnalytics, track } from "./lib/track";
 import { copyText, toast } from "./lib/core";
-import { adSlot, favoriteStar } from "./lib/ui";
+import { favoriteStar } from "./lib/ui";
 import { CATEGORIES, TOOL_META, categoryLabel, toolsByCategory, searchTools, loadTool } from "./tools/registry";
 
 initAnalytics();
-trackToolViews(TOOL_META.map((t) => ({ slug: t.slug, title: t.title })));
 
 try {
   navigator.serviceWorker?.getRegistrations?.().then((rs) => rs.forEach((r) => r.unregister()));
@@ -96,16 +95,17 @@ async function initTool(): Promise<void> {
   }
 
   if (meta) {
-    const rel = toolsByCategory(meta.category).filter((t) => t.slug !== slug).slice(0, 4);
-    if (rel.length) {
-      const wrap = document.createElement("div");
-      wrap.className = "related";
-      wrap.innerHTML = `<h3 class="sec-title">You might like</h3><div class="grid tools-grid">${rel
-        .map((t) => `<a class="card tool-card" href="/tool/${t.slug}/"><h4>${t.title}</h4><p>${t.desc}</p></a>`)
-        .join("")}</div>`;
-      root.appendChild(wrap);
+    if (!document.querySelector("[data-static-related]")) {
+      const rel = toolsByCategory(meta.category).filter((t) => t.slug !== slug).slice(0, 4);
+      if (rel.length) {
+        const wrap = document.createElement("div");
+        wrap.className = "related";
+        wrap.innerHTML = `<h3 class="sec-title">You might like</h3><div class="grid tools-grid">${rel
+          .map((t) => `<a class="card tool-card" href="/tool/${t.slug}/"><h4>${t.title}</h4><p>${t.desc}</p></a>`)
+          .join("")}</div>`;
+        root.appendChild(wrap);
+      }
     }
-    root.insertAdjacentHTML("beforeend", adSlot("tool-bottom"));
   }
 }
 
@@ -221,15 +221,39 @@ function initSearch(): void {
         ? `<p class="empty-text">Nothing for "${q}"</p>`
         : `<p class="empty-text">Type to search ${TOOL_META.length} tools</p>`;
   };
-  opens.forEach((open) => open.addEventListener("click", () => {
-    modal.classList.add("open");
-    if (input) { input.value = ""; input.focus(); }
-    render("");
-  }));
-  modal.addEventListener("click", (e) => { if (e.target === modal) modal.classList.remove("open"); });
+
+  let lastFocused: HTMLElement | null = null;
+  const setOpen = (open: boolean) => {
+    modal.classList.toggle("open", open);
+    opens.forEach((o) => o.setAttribute("aria-expanded", open ? "true" : "false"));
+    if (open) {
+      lastFocused = document.activeElement as HTMLElement | null;
+      if (input) { input.value = ""; input.focus(); }
+      render("");
+    } else if (lastFocused) {
+      lastFocused.focus();
+    }
+  };
+
+  opens.forEach((open) => {
+    open.addEventListener("click", () => setOpen(true));
+    open.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setOpen(true); }
+    });
+  });
+  modal.addEventListener("click", (e) => { if (e.target === modal) setOpen(false); });
+  modal.addEventListener("keydown", (e) => {
+    if (e.key !== "Tab" || !modal.classList.contains("open")) return;
+    const els = [...modal.querySelectorAll<HTMLElement>("input, a, button")].filter((el) => el.offsetParent !== null);
+    if (!els.length) return;
+    const first = els[0];
+    const last = els[els.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
   window.addEventListener("keydown", (e) => {
-    if ((e.ctrlKey || e.metaKey) && (e.key === "k" || e.key === "K")) { e.preventDefault(); opens.forEach((o) => o.click()); }
-    if (e.key === "Escape") modal.classList.remove("open");
+    if ((e.ctrlKey || e.metaKey) && (e.key === "k" || e.key === "K")) { e.preventDefault(); setOpen(!modal.classList.contains("open")); }
+    if (e.key === "Escape") setOpen(false);
   });
   input?.addEventListener("input", () => render(input.value));
 }
