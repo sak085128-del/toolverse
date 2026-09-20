@@ -1,9 +1,12 @@
+import { inject } from "@vercel/analytics";
 import "./styles.css";
 import { applyTheme, cycleTheme, getTheme, pushRecent, isFavorite, toggleFavorite } from "./lib/store";
 import { initAnalytics, track } from "./lib/track";
 import { copyText, toast } from "./lib/core";
 import { favoriteStar } from "./lib/ui";
 import { CATEGORIES, TOOL_META, categoryLabel, toolsByCategory, searchTools, loadTool } from "./tools/registry";
+
+inject();
 
 initAnalytics();
 
