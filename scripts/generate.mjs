@@ -12,6 +12,7 @@ const YEAR = new Date().getFullYear();
 const ASSET_JS = "/assets/app.js";
 const ASSET_CSS = "/assets/app.css";
 const ADSENSE = '<meta name="google-adsense-account" content="ca-pub-3202800303748206">';
+const GOOGLE_VERIFY = '<meta name="google-site-verification" content="googleb47353d761b6715d">';
 
 const esc = (s) =>
   String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -38,6 +39,7 @@ function head(title, desc, canonical, jsonld) {
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   ${ADSENSE}
+  ${GOOGLE_VERIFY}
   <link rel="stylesheet" href="${ASSET_CSS}">
   ${ld}
 </head>`;
@@ -49,8 +51,8 @@ function header() {
       <a class="logo" href="/"><span class="logo-mark">T</span>ToolVerse</a>
       <nav class="nav-spacer"></nav>
       <nav class="nav-links">
-        <a href="/tools.html" class="nav-hide">All tools</a>
-        <a href="/favorites.html" class="nav-hide">Favorites</a>
+        <a href="/tools/" class="nav-hide">All tools</a>
+        <a href="/favorites/" class="nav-hide">Favorites</a>
         <button type="button" class="icon-btn" data-search-open aria-label="Search tools">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
           <span class="nav-hide">Search</span><kbd class="search-kbd">Ctrl&nbsp;K</kbd>
@@ -68,10 +70,10 @@ function footer() {
     <div class="wrap footer-inner">
       <span>© ${YEAR} ToolVerse — 100% free, forever. Everything runs in your browser.</span>
       <nav class="footer-links">
-        <a href="/tools.html">All tools</a>
-        <a href="/favorites.html">Favorites</a>
-        <a href="/about.html">About</a>
-        <a href="/privacy.html">Privacy</a>
+        <a href="/tools/">All tools</a>
+        <a href="/favorites/">Favorites</a>
+        <a href="/about/">About</a>
+        <a href="/privacy/">Privacy</a>
       </nav>
     </div>
   </footer>`;
@@ -185,7 +187,7 @@ writeFileSync(
     "Browse all free online tools at ToolVerse. Every tool runs locally in your browser with no uploads and no limits.",
     ' data-page="tools"',
     allToolsHtml,
-    { canonical: "/tools.html" }
+    { canonical: "/tools/" }
   )
 );
 
@@ -199,7 +201,7 @@ writeFileSync(
     `<section class="cat"><div class="cat-head"><h2>Your favorites</h2><span class="tool-count" data-favcount></span></div>
       <p class="cat-actions"><button type="button" class="btn mini" data-clearfavs hidden>Clear all favorites</button></p>
       <div class="grid tools-grid" data-favlist></div></section>`,
-    { canonical: "/favorites.html" }
+    { canonical: "/favorites/" }
   )
 );
 
@@ -268,7 +270,7 @@ function staticPage(title, desc, slug, bodyHtml) {
     desc,
     ' data-page="static"',
     `<section class="static-page"><h1>${esc(title)}</h1>${bodyHtml}</section>`,
-    { canonical: `/${slug}.html` }
+    { canonical: `/${slug}/` }
   );
 }
 
@@ -300,7 +302,7 @@ writeFileSync(
       <li>Page view statistics via privacy-friendly analytics to understand which tools are used.</li>
     </ul>
     <h3>Third parties</h3>
-    <p>Advertising is served by Monetag. Their tag may set cookies and process limited usage data as described in their own privacy policy.</p>
+    <p>Advertising is served by Google AdSense. Google may use cookies and process advertiser data as described in the Google AdSense privacy policy and Google's Privacy & Terms. You can control this via Google's Ads Settings.</p>
     <h3>Contact</h3>
     <p>Questions? Reach out via the contact tool in our GitHub discussions."</p>`
   )
@@ -310,12 +312,12 @@ writeFileSync(
 const sitemap = [];
 for (const t of meta.tools) sitemap.push(`${SITE}/tool/${t.slug}/`);
 for (const c of meta.categories) if (meta.tools.some((t) => t.category === c.id)) sitemap.push(`${SITE}/category/${c.id}/`);
-for (const p of ["", "tools.html", "favorites.html", "about.html", "privacy.html"]) sitemap.push(SITE + "/" + p);
+for (const p of ["", "tools/", "favorites/", "about/", "privacy/"]) sitemap.push(SITE + "/" + p);
 
 writeFileSync(
   join(dist, "robots.txt"),
   `User-agent: *
-Allow:
+Allow: /
 
 Sitemap: ${SITE}/sitemap.xml
 `
