@@ -4,8 +4,10 @@ import { initAnalytics, track, trackToolViews } from "./lib/track";
 import { copyText, toast } from "./lib/core";
 import { adSlot, favoriteStar } from "./lib/ui";
 import { CATEGORIES, TOOL_META, categoryLabel, toolsByCategory, searchTools, loadTool } from "./tools/registry";
+import { inject } from "@vercel/analytics";
 
 initAnalytics();
+inject();
 trackToolViews(TOOL_META.map((t) => ({ slug: t.slug, title: t.title })));
 
 const page = document.body.dataset.page || "home";
