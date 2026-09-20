@@ -1,0 +1,22 @@
+{
+  "name": "toolverse",
+  "private": true,
+  "version": "3.0.0",
+  "type": "module",
+  "description": "ToolVerse — 78 free online tools that just work.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build && node scripts/generate.mjs",
+    "preview": "vite preview",
+    "generate": "node scripts/generate.mjs"
+  },
+  "dependencies": {
+    "jszip": "^3.10.1",
+    "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^4.10.38"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vite": "^6.2.0"
+  }
+}
