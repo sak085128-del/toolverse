@@ -4,7 +4,9 @@ import { initAnalytics, track } from "./lib/track";
 import { copyText, toast } from "./lib/core";
 import { favoriteStar } from "./lib/ui";
 import { CATEGORIES, TOOL_META, categoryLabel, toolsByCategory, searchTools, loadTool } from "./tools/registry";
+import { inject } from "@vercel/analytics";
 
+inject();
 initAnalytics();
 
 try {
